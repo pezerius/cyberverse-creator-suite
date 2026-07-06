@@ -21,9 +21,12 @@ import { Route as NotificationsRouteImport } from './routes/notifications'
 import { Route as ModerationRouteImport } from './routes/moderation'
 import { Route as MarketplaceRouteImport } from './routes/marketplace'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as LockerRouteImport } from './routes/locker'
+import { Route as LibraryRouteImport } from './routes/library'
 import { Route as LegalRouteImport } from './routes/legal'
 import { Route as InventoryRouteImport } from './routes/inventory'
 import { Route as HubRouteImport } from './routes/hub'
+import { Route as HomeRouteImport } from './routes/home'
 import { Route as FeedRouteImport } from './routes/feed'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CreateRouteImport } from './routes/create'
@@ -103,6 +106,16 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LockerRoute = LockerRouteImport.update({
+  id: '/locker',
+  path: '/locker',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LibraryRoute = LibraryRouteImport.update({
+  id: '/library',
+  path: '/library',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LegalRoute = LegalRouteImport.update({
   id: '/legal',
   path: '/legal',
@@ -116,6 +129,11 @@ const InventoryRoute = InventoryRouteImport.update({
 const HubRoute = HubRouteImport.update({
   id: '/hub',
   path: '/hub',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeRoute = HomeRouteImport.update({
+  id: '/home',
+  path: '/home',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FeedRoute = FeedRouteImport.update({
@@ -218,9 +236,12 @@ export interface FileRoutesByFullPath {
   '/create': typeof CreateRoute
   '/dashboard': typeof DashboardRoute
   '/feed': typeof FeedRoute
+  '/home': typeof HomeRoute
   '/hub': typeof HubRoute
   '/inventory': typeof InventoryRoute
   '/legal': typeof LegalRouteWithChildren
+  '/library': typeof LibraryRoute
+  '/locker': typeof LockerRoute
   '/login': typeof LoginRoute
   '/marketplace': typeof MarketplaceRouteWithChildren
   '/moderation': typeof ModerationRoute
@@ -253,9 +274,12 @@ export interface FileRoutesByTo {
   '/create': typeof CreateRoute
   '/dashboard': typeof DashboardRoute
   '/feed': typeof FeedRoute
+  '/home': typeof HomeRoute
   '/hub': typeof HubRoute
   '/inventory': typeof InventoryRoute
   '/legal': typeof LegalRouteWithChildren
+  '/library': typeof LibraryRoute
+  '/locker': typeof LockerRoute
   '/login': typeof LoginRoute
   '/moderation': typeof ModerationRoute
   '/notifications': typeof NotificationsRoute
@@ -288,9 +312,12 @@ export interface FileRoutesById {
   '/create': typeof CreateRoute
   '/dashboard': typeof DashboardRoute
   '/feed': typeof FeedRoute
+  '/home': typeof HomeRoute
   '/hub': typeof HubRoute
   '/inventory': typeof InventoryRoute
   '/legal': typeof LegalRouteWithChildren
+  '/library': typeof LibraryRoute
+  '/locker': typeof LockerRoute
   '/login': typeof LoginRoute
   '/marketplace': typeof MarketplaceRouteWithChildren
   '/moderation': typeof ModerationRoute
@@ -325,9 +352,12 @@ export interface FileRouteTypes {
     | '/create'
     | '/dashboard'
     | '/feed'
+    | '/home'
     | '/hub'
     | '/inventory'
     | '/legal'
+    | '/library'
+    | '/locker'
     | '/login'
     | '/marketplace'
     | '/moderation'
@@ -360,9 +390,12 @@ export interface FileRouteTypes {
     | '/create'
     | '/dashboard'
     | '/feed'
+    | '/home'
     | '/hub'
     | '/inventory'
     | '/legal'
+    | '/library'
+    | '/locker'
     | '/login'
     | '/moderation'
     | '/notifications'
@@ -394,9 +427,12 @@ export interface FileRouteTypes {
     | '/create'
     | '/dashboard'
     | '/feed'
+    | '/home'
     | '/hub'
     | '/inventory'
     | '/legal'
+    | '/library'
+    | '/locker'
     | '/login'
     | '/marketplace'
     | '/moderation'
@@ -430,9 +466,12 @@ export interface RootRouteChildren {
   CreateRoute: typeof CreateRoute
   DashboardRoute: typeof DashboardRoute
   FeedRoute: typeof FeedRoute
+  HomeRoute: typeof HomeRoute
   HubRoute: typeof HubRoute
   InventoryRoute: typeof InventoryRoute
   LegalRoute: typeof LegalRouteWithChildren
+  LibraryRoute: typeof LibraryRoute
+  LockerRoute: typeof LockerRoute
   LoginRoute: typeof LoginRoute
   MarketplaceRoute: typeof MarketplaceRouteWithChildren
   ModerationRoute: typeof ModerationRoute
@@ -536,6 +575,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/locker': {
+      id: '/locker'
+      path: '/locker'
+      fullPath: '/locker'
+      preLoaderRoute: typeof LockerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/library': {
+      id: '/library'
+      path: '/library'
+      fullPath: '/library'
+      preLoaderRoute: typeof LibraryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/legal': {
       id: '/legal'
       path: '/legal'
@@ -555,6 +608,13 @@ declare module '@tanstack/react-router' {
       path: '/hub'
       fullPath: '/hub'
       preLoaderRoute: typeof HubRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home': {
+      id: '/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof HomeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/feed': {
@@ -737,9 +797,12 @@ const rootRouteChildren: RootRouteChildren = {
   CreateRoute: CreateRoute,
   DashboardRoute: DashboardRoute,
   FeedRoute: FeedRoute,
+  HomeRoute: HomeRoute,
   HubRoute: HubRoute,
   InventoryRoute: InventoryRoute,
   LegalRoute: LegalRouteWithChildren,
+  LibraryRoute: LibraryRoute,
+  LockerRoute: LockerRoute,
   LoginRoute: LoginRoute,
   MarketplaceRoute: MarketplaceRouteWithChildren,
   ModerationRoute: ModerationRoute,
