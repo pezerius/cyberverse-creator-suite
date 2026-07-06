@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Gamepad2, Hammer, Users, Store, User, Coins, Settings, Menu, X, Activity, Heart, Shield, Package, LayoutDashboard, Sparkles, Home, Library, Shirt, Trophy, Swords } from "lucide-react";
+import { Gamepad2, Hammer, Users, Store, User, Coins, Settings, Menu, X, Activity, Heart, Shield, Package, LayoutDashboard, Sparkles, Home, Library, Shirt, Swords } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { CommandPalette, CommandKButton } from "@/components/CommandPalette";
 import { NotificationsBell } from "@/components/NotificationsBell";
@@ -191,5 +191,3 @@ function TopBar({ onOpenMobile, mode, setMode }: { onOpenMobile: () => void; mod
   );
 }
 
-// Keep unused imports referenced for lucide tree-shake (Trophy used in future routes)
-export const _iconRefs = { Trophy };
