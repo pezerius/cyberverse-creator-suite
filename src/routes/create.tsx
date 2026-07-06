@@ -78,8 +78,69 @@ function CreatePage() {
         </div>
       </div>
 
-      {/* Three pitch panels */}
-      <div className="mt-10 grid md:grid-cols-3 gap-5">
+      {/* AI Copilot — now between hero and pitch panels */}
+      <div className="mt-12">
+        <SectionHeader
+          eyebrow="// AI Copilot · Beta"
+          title="Describe it. We'll scaffold it."
+          sub="Rough idea in plain language. Pixels Studio picks a template, places entities, wires basic logic, and hands you an editable draft."
+          right={<Chip tone="violet">Beta · 400 PIXELS / gen</Chip>}
+        />
+        <div className="grid lg:grid-cols-5 gap-5">
+          <div className="lg:col-span-3">
+            <HudCard glow="magenta">
+              <label className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Prompt</label>
+              <textarea
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
+                rows={5}
+                className="mt-2 w-full bg-background/60 border-2 border-ink rounded-2xl p-4 font-mono text-sm focus:outline-none focus:border-primary resize-none"
+              />
+              <div className="mt-4 flex flex-wrap items-center gap-2">
+                {["Rooftop tag", "Speedrun platformer", "Cyber chess", "Zero-G race"].map((t) => (
+                  <button
+                    key={t}
+                    onClick={() => setPrompt(`A ${t.toLowerCase()} with a twist that surprises returning players.`)}
+                    className="px-3 h-7 rounded-full bg-white border-2 border-ink font-mono text-[10px] uppercase tracking-widest text-ink hover:bg-accent transition-colors"
+                  >
+                    + {t}
+                  </button>
+                ))}
+                <HudButton variant="primary" className="ml-auto" onClick={generate} disabled={running}>
+                  {running ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
+                  {running ? "Generating..." : "Generate draft"}
+                </HudButton>
+              </div>
+            </HudCard>
+          </div>
+          <div className="lg:col-span-2">
+            <HudCard>
+              <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-3">// Progress log</div>
+              <div className="font-mono text-xs space-y-1.5 min-h-[200px]">
+                {progressSteps.map((s, i) => {
+                  const done = i < step;
+                  const active = i === step && running;
+                  return (
+                    <div key={i} className={`flex items-start gap-2 ${done ? "text-[oklch(0.45_0.20_140)]" : active ? "text-primary" : "text-ink/40"}`}>
+                      <span className="w-3">{done ? "✓" : active ? "▸" : "·"}</span>
+                      <span>{s}</span>
+                    </div>
+                  );
+                })}
+                {step >= progressSteps.length && (
+                  <div className="mt-3 pt-3 border-t-2 border-ink/20 flex items-center justify-between">
+                    <span className="text-primary font-bold">Draft ready.</span>
+                    <Link to="/builder" className="underline font-bold">Open in editor →</Link>
+                  </div>
+                )}
+              </div>
+            </HudCard>
+          </div>
+        </div>
+      </div>
+
+      {/* Three pitch panels — now after AI copilot */}
+      <div className="mt-12 grid md:grid-cols-3 gap-5">
         <PitchPanel
           eyebrow="Make"
           tone="magenta"
@@ -104,67 +165,6 @@ function CreatePage() {
           body="Every PIXEL spent on your game settles on-chain. Withdraw to your Pixels wallet after a 7-day review window."
           bullets={["Pro plan bumps you to 80/20", "One-time NFT mint per project", "No hidden platform fees"]}
         />
-      </div>
-
-      {/* AI Copilot */}
-      <div className="mt-12">
-        <SectionHeader
-          eyebrow="// AI Copilot · Beta"
-          title="Describe it. We'll scaffold it."
-          sub="Rough idea in plain language. Pixels Studio picks a template, places entities, wires basic logic, and hands you an editable draft."
-          right={<Chip tone="violet">Beta · 400 PIXELS / gen</Chip>}
-        />
-        <div className="grid lg:grid-cols-5 gap-5">
-          <div className="lg:col-span-3">
-            <HudCard glow="magenta">
-              <label className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Prompt</label>
-              <textarea
-                value={prompt}
-                onChange={(e) => setPrompt(e.target.value)}
-                rows={5}
-                className="mt-2 w-full bg-background/60 border border-border/60 clip-hud-sm p-4 font-mono text-sm focus:outline-none focus:border-primary/60 resize-none"
-              />
-              <div className="mt-4 flex flex-wrap items-center gap-2">
-                {["Rooftop tag", "Speedrun platformer", "Cyber chess", "Zero-G race"].map((t) => (
-                  <button
-                    key={t}
-                    onClick={() => setPrompt(`A ${t.toLowerCase()} with a twist that surprises returning players.`)}
-                    className="px-2 h-7 clip-hud-sm bg-surface-2 border border-border/50 font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-foreground"
-                  >
-                    + {t}
-                  </button>
-                ))}
-                <HudButton variant="primary" className="ml-auto" onClick={generate} disabled={running}>
-                  {running ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
-                  {running ? "Generating..." : "Generate draft"}
-                </HudButton>
-              </div>
-            </HudCard>
-          </div>
-          <div className="lg:col-span-2">
-            <HudCard>
-              <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-3">// Progress log</div>
-              <div className="font-mono text-xs space-y-1.5 min-h-[200px]">
-                {progressSteps.map((s, i) => {
-                  const done = i < step;
-                  const active = i === step && running;
-                  return (
-                    <div key={i} className={`flex items-start gap-2 ${done ? "text-neon-green" : active ? "neon-text-cyan" : "text-muted-foreground/50"}`}>
-                      <span className="w-3">{done ? "✓" : active ? "▸" : "·"}</span>
-                      <span>{s}</span>
-                    </div>
-                  );
-                })}
-                {step >= progressSteps.length && (
-                  <div className="mt-3 pt-3 border-t border-border/40 flex items-center justify-between">
-                    <span className="neon-text-magenta">Draft ready.</span>
-                    <Link to="/builder" className="underline">Open in editor →</Link>
-                  </div>
-                )}
-              </div>
-            </HudCard>
-          </div>
-        </div>
       </div>
     </div>
   );
