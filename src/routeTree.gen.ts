@@ -13,6 +13,7 @@ import { Route as TemplatesRouteImport } from './routes/templates'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as ProRouteImport } from './routes/pro'
+import { Route as MarketplaceRouteImport } from './routes/marketplace'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as HubRouteImport } from './routes/hub'
 import { Route as DashboardRouteImport } from './routes/dashboard'
@@ -39,6 +40,11 @@ const ProfileRoute = ProfileRouteImport.update({
 const ProRoute = ProRouteImport.update({
   id: '/pro',
   path: '/pro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketplaceRoute = MarketplaceRouteImport.update({
+  id: '/marketplace',
+  path: '/marketplace',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -72,9 +78,9 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const MarketplaceIndexRoute = MarketplaceIndexRouteImport.update({
-  id: '/marketplace/',
-  path: '/marketplace/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => MarketplaceRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -84,6 +90,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRoute
   '/hub': typeof HubRoute
   '/login': typeof LoginRoute
+  '/marketplace': typeof MarketplaceRouteWithChildren
   '/pro': typeof ProRoute
   '/profile': typeof ProfileRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -111,6 +118,7 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRoute
   '/hub': typeof HubRoute
   '/login': typeof LoginRoute
+  '/marketplace': typeof MarketplaceRouteWithChildren
   '/pro': typeof ProRoute
   '/profile': typeof ProfileRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -126,6 +134,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/hub'
     | '/login'
+    | '/marketplace'
     | '/pro'
     | '/profile'
     | '/sitemap.xml'
@@ -152,6 +161,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/hub'
     | '/login'
+    | '/marketplace'
     | '/pro'
     | '/profile'
     | '/sitemap.xml'
@@ -166,11 +176,11 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRoute
   HubRoute: typeof HubRoute
   LoginRoute: typeof LoginRoute
+  MarketplaceRoute: typeof MarketplaceRouteWithChildren
   ProRoute: typeof ProRoute
   ProfileRoute: typeof ProfileRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TemplatesRoute: typeof TemplatesRoute
-  MarketplaceIndexRoute: typeof MarketplaceIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -201,6 +211,13 @@ declare module '@tanstack/react-router' {
       path: '/pro'
       fullPath: '/pro'
       preLoaderRoute: typeof ProRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marketplace': {
+      id: '/marketplace'
+      path: '/marketplace'
+      fullPath: '/marketplace'
+      preLoaderRoute: typeof MarketplaceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -247,13 +264,25 @@ declare module '@tanstack/react-router' {
     }
     '/marketplace/': {
       id: '/marketplace/'
-      path: '/marketplace'
+      path: '/'
       fullPath: '/marketplace/'
       preLoaderRoute: typeof MarketplaceIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof MarketplaceRoute
     }
   }
 }
+
+interface MarketplaceRouteChildren {
+  MarketplaceIndexRoute: typeof MarketplaceIndexRoute
+}
+
+const MarketplaceRouteChildren: MarketplaceRouteChildren = {
+  MarketplaceIndexRoute: MarketplaceIndexRoute,
+}
+
+const MarketplaceRouteWithChildren = MarketplaceRoute._addFileChildren(
+  MarketplaceRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -262,11 +291,11 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRoute,
   HubRoute: HubRoute,
   LoginRoute: LoginRoute,
+  MarketplaceRoute: MarketplaceRouteWithChildren,
   ProRoute: ProRoute,
   ProfileRoute: ProfileRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TemplatesRoute: TemplatesRoute,
-  MarketplaceIndexRoute: MarketplaceIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
