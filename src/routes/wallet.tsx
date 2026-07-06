@@ -242,35 +242,77 @@ function PayoutModal({ onClose }: { onClose: () => void }) {
 
 function TopupModal({ onClose }: { onClose: () => void }) {
   const [preset, setPreset] = useState(5000);
-  const [step, setStep] = useState<"form" | "done">("form");
+  const [step, setStep] = useState<"form" | "pending" | "done">("form");
+  const depositAddress = "0xPX7a...9c4E";
+  const network = "Pixels Chain · Mainnet";
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/50 backdrop-blur-sm" onClick={onClose}>
       <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="w-full max-w-md bg-background border-2 border-ink rounded-3xl shadow-[6px_6px_0_0_var(--ink)] overflow-hidden" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between px-5 h-12 border-b-2 border-ink bg-primary text-primary-foreground">
-          <div className="text-[11px] font-mono uppercase tracking-widest">{step === "done" ? "// Added" : "// Top up"}</div>
+          <div className="text-[11px] font-mono uppercase tracking-widest">// Deposit $PIXEL</div>
           <button onClick={onClose} className="w-7 h-7 rounded-full bg-primary-foreground text-primary flex items-center justify-center"><X className="w-4 h-4" /></button>
         </div>
-        {step === "form" ? (
+        {step === "form" && (
           <div className="p-6 space-y-4">
-            <div className="grid grid-cols-3 gap-2">
-              {[1000, 5000, 20000].map((v) => (
-                <button key={v} onClick={() => setPreset(v)} className={`p-3 rounded-2xl border-2 border-ink ${preset === v ? "bg-accent shadow-[2px_2px_0_0_var(--ink)]" : "bg-white"}`}>
-                  <div className="italic font-black text-lg" style={{ fontFamily: "var(--font-display)" }}>{v.toLocaleString()}</div>
-                  <div className="text-[10px] font-mono text-ink/60">${(v * balance.usdRate).toFixed(2)}</div>
-                </button>
-              ))}
+            <p className="text-xs text-ink/60 font-mono">Send $PIXEL from any wallet to your in-game balance. No fiat, no card.</p>
+
+            <div>
+              <div className="text-[10px] font-mono uppercase tracking-widest text-ink/60 mb-1.5">Suggested amount</div>
+              <div className="grid grid-cols-3 gap-2">
+                {[1000, 5000, 20000].map((v) => (
+                  <button key={v} onClick={() => setPreset(v)} className={`p-3 rounded-2xl border-2 border-ink ${preset === v ? "bg-accent shadow-[2px_2px_0_0_var(--ink)]" : "bg-white"}`}>
+                    <div className="italic font-black text-lg" style={{ fontFamily: "var(--font-display)" }}>{v.toLocaleString()}</div>
+                    <div className="text-[10px] font-mono text-ink/60">$PIXEL</div>
+                  </button>
+                ))}
+              </div>
             </div>
-            <div className="p-3 rounded-2xl bg-white border-2 border-ink flex items-center gap-2 font-mono text-xs">
-              <CreditCard className="w-4 h-4" /> Visa •••• 4290
-              <span className="ml-auto text-ink/60">2.5% fee</span>
+
+            <div className="p-3 rounded-2xl bg-white border-2 border-ink space-y-2">
+              <div className="flex items-center gap-2">
+                <Bitcoin className="w-4 h-4" />
+                <span className="text-[10px] font-mono uppercase tracking-widest text-ink/60">Network</span>
+                <span className="ml-auto font-mono text-xs">{network}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Wallet className="w-4 h-4" />
+                <span className="text-[10px] font-mono uppercase tracking-widest text-ink/60">Your address</span>
+                <span className="ml-auto font-mono text-xs">{depositAddress}</span>
+                <button
+                  onClick={() => { try { navigator.clipboard?.writeText(depositAddress); } catch {} }}
+                  className="ml-1 px-2 h-6 rounded-full border-2 border-ink bg-accent text-[9px] font-mono uppercase tracking-widest"
+                >Copy</button>
+              </div>
             </div>
-            <HudButton variant="primary" className="w-full" onClick={() => setStep("done")}>Buy {preset.toLocaleString()} $PIXEL</HudButton>
+
+            <div className="p-3 rounded-2xl bg-muted/40 border-2 border-ink/30 flex gap-2 text-[11px] font-mono text-ink/70">
+              <Info className="w-3.5 h-3.5 mt-0.5 shrink-0" />
+              <span>Deposits credit after 3 confirmations (~30s). Sending from an exchange? Double-check the network.</span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2">
+              <HudButton variant="ghost" className="w-full" onClick={onClose}>Cancel</HudButton>
+              <HudButton variant="primary" className="w-full" onClick={() => setStep("pending")}>I sent {preset.toLocaleString()}</HudButton>
+            </div>
           </div>
-        ) : (
+        )}
+
+        {step === "pending" && (
+          <div className="p-8 text-center">
+            <div className="w-14 h-14 mx-auto rounded-2xl bg-accent border-2 border-ink shadow-[3px_3px_0_0_var(--ink)] flex items-center justify-center">
+              <Clock className="w-7 h-7 animate-pulse" strokeWidth={3} />
+            </div>
+            <div className="mt-4 italic font-black text-2xl" style={{ fontFamily: "var(--font-display)" }}>Waiting for confirmations…</div>
+            <div className="mt-2 text-sm text-ink/60 font-mono">1 of 3 · ~20s remaining</div>
+            <HudButton variant="primary" className="mt-5" onClick={() => setStep("done")}>Simulate confirmed</HudButton>
+          </div>
+        )}
+
+        {step === "done" && (
           <div className="p-8 text-center">
             <div className="w-14 h-14 mx-auto rounded-2xl bg-accent border-2 border-ink shadow-[3px_3px_0_0_var(--ink)] flex items-center justify-center"><Check className="w-7 h-7" strokeWidth={3} /></div>
-            <div className="mt-4 italic font-black text-2xl" style={{ fontFamily: "var(--font-display)" }}>+{preset.toLocaleString()} PX</div>
-            <div className="mt-2 text-sm text-ink/60">Added to your available balance.</div>
+            <div className="mt-4 italic font-black text-2xl" style={{ fontFamily: "var(--font-display)" }}>+{preset.toLocaleString()} $PIXEL</div>
+            <div className="mt-2 text-sm text-ink/60">Deposited to your available balance.</div>
             <HudButton variant="primary" className="mt-5" onClick={onClose}>Nice</HudButton>
           </div>
         )}
@@ -278,3 +320,4 @@ function TopupModal({ onClose }: { onClose: () => void }) {
     </div>
   );
 }
+
