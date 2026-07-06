@@ -3,6 +3,7 @@ import { AppShell } from "@/components/AppShell";
 import { HudButton, HudCard, Chip, SectionHeader } from "@/components/hud";
 import { User, Shield, Bell, Volume2, Palette, Wallet, KeyRound, Trash2, Check, ExternalLink } from "lucide-react";
 import { useState } from "react";
+import { useTheme } from "@/lib/theme";
 
 export const Route = createFileRoute("/settings")({
   head: () => ({
@@ -232,7 +233,7 @@ function SoundPanel() {
 }
 
 function AppearancePanel() {
-  const [theme, setTheme] = useState<"light" | "night" | "auto">("light");
+  const { theme, setTheme, density, setDensity } = useTheme();
   return (
     <Panel title="Appearance">
       <Field label="Theme">
@@ -247,8 +248,8 @@ function AppearancePanel() {
       </Field>
       <Field label="Density">
         <div className="grid grid-cols-2 gap-2">
-          {["Comfortable", "Compact"].map((d) => (
-            <button key={d} className="p-3 rounded-2xl border-2 border-ink bg-white">{d}</button>
+          {(["comfortable", "compact"] as const).map((d) => (
+            <button key={d} onClick={() => setDensity(d)} className={`p-3 rounded-2xl border-2 border-ink capitalize ${density === d ? "bg-accent shadow-[2px_2px_0_0_var(--ink)]" : "bg-white"}`}>{d}</button>
           ))}
         </div>
       </Field>
