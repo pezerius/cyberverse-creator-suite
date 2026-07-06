@@ -68,23 +68,34 @@ function AssetDetail() {
       <div className="grid lg:grid-cols-[1.4fr_1fr] gap-6 mb-8">
         {/* Preview */}
         <div className="bg-white border-2 border-ink rounded-3xl shadow-[4px_4px_0_0_var(--ink)] overflow-hidden">
-          <div className={`h-80 bg-gradient-to-br ${asset.grad} relative flex items-center justify-center border-b-2 border-ink`}>
-            <Icon className="w-24 h-24 text-ink/70" />
-            <div className="absolute top-4 left-4 flex gap-1 flex-wrap">
-              <Chip>{asset.type}</Chip>
-              {asset.featured && <Chip tone="amber">★ Featured</Chip>}
-              {asset.new && <Chip tone="green">New</Chip>}
-              {asset.free && <Chip tone="green">Free</Chip>}
+          {asset.type === "Sprites" ? (
+            <SpritePlayer grad={asset.grad} />
+          ) : asset.type === "SFX" ? (
+            <div className="p-4 space-y-3">
+              <WaveformPlayer label={`${asset.name.toLowerCase().replace(/\s+/g,"_")}_01.wav`} duration={2.4} seed={7} />
+              <WaveformPlayer label={`${asset.name.toLowerCase().replace(/\s+/g,"_")}_02.wav`} duration={1.8} seed={13} />
+              <WaveformPlayer label={`${asset.name.toLowerCase().replace(/\s+/g,"_")}_03.wav`} duration={3.1} seed={21} />
             </div>
-          </div>
-          {/* Thumbnail strip */}
-          <div className="p-3 flex gap-2 overflow-x-auto">
-            {[0,1,2,3].map((i) => (
-              <div key={i} className={`shrink-0 w-20 h-16 rounded-xl border-2 ${i === 0 ? "border-primary shadow-[2px_2px_0_0_var(--ink)]" : "border-ink/30"} bg-gradient-to-br ${asset.grad} flex items-center justify-center`}>
-                <Icon className="w-5 h-5 text-ink/70" />
+          ) : (
+            <>
+              <div className={`h-80 bg-gradient-to-br ${asset.grad} relative flex items-center justify-center border-b-2 border-ink`}>
+                <Icon className="w-24 h-24 text-ink/70" />
+                <div className="absolute top-4 left-4 flex gap-1 flex-wrap">
+                  <Chip>{asset.type}</Chip>
+                  {asset.featured && <Chip tone="amber">★ Featured</Chip>}
+                  {asset.new && <Chip tone="green">New</Chip>}
+                  {asset.free && <Chip tone="green">Free</Chip>}
+                </div>
               </div>
-            ))}
-          </div>
+              <div className="p-3 flex gap-2 overflow-x-auto">
+                {[0,1,2,3].map((i) => (
+                  <div key={i} className={`shrink-0 w-20 h-16 rounded-xl border-2 ${i === 0 ? "border-primary shadow-[2px_2px_0_0_var(--ink)]" : "border-ink/30"} bg-gradient-to-br ${asset.grad} flex items-center justify-center`}>
+                    <Icon className="w-5 h-5 text-ink/70" />
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </div>
 
         {/* Purchase panel */}
@@ -230,7 +241,7 @@ function AssetDetail() {
               <li className="flex items-start gap-2"><Shield className="w-4 h-4 text-primary shrink-0 mt-0.5" /><span>Scanned for malware & prohibited content on upload.</span></li>
               <li className="flex items-start gap-2"><Check className="w-4 h-4 text-[oklch(0.55_0.22_140)] shrink-0 mt-0.5" strokeWidth={3} /><span>Copyright cleared — creator holds full IP rights.</span></li>
             </ul>
-            <button className="mt-4 inline-flex items-center gap-1 text-[11px] font-mono text-ink/60 hover:text-ink"><Flag className="w-3 h-3" /> Report this asset</button>
+            <div className="mt-4"><ReportButton targetLabel={asset.name} size="sm" /></div>
           </HudCard>
         </div>
       </div>
