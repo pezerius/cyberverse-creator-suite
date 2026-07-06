@@ -52,7 +52,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           return (
             <Link
               key={item.label}
-              to={item.to}
+              to={item.to as never}
               className={`relative w-11 h-11 clip-hud-sm flex items-center justify-center transition group ${
                 active
                   ? "bg-primary/15 text-primary neon-border-magenta"
