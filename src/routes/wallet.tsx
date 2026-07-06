@@ -287,7 +287,7 @@ function TopupModal({ onClose }: { onClose: () => void }) {
 
             <div className="p-3 rounded-2xl bg-muted/40 border-2 border-ink/30 flex gap-2 text-[11px] font-mono text-ink/70">
               <Info className="w-3.5 h-3.5 mt-0.5 shrink-0" />
-              <span>Deposits credit after 3 confirmations (~30s). Sending from an exchange? Double-check the network.</span>
+              <span>Send $PIXEL on Ronin only. Deposits from Ethereum, BSC or exchanges using the wrong network will be lost. Credits after ~30s.</span>
             </div>
 
             <div className="grid grid-cols-2 gap-2">
