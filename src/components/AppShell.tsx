@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Gamepad2, Hammer, Users, Store, User, Coins, Settings, Menu, X, Activity, Heart, Shield } from "lucide-react";
+import { Gamepad2, Hammer, Users, Store, User, Coins, Settings, Menu, X, Activity, Heart, Shield, Package } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { CommandPalette, CommandKButton } from "@/components/CommandPalette";
 import { NotificationsBell } from "@/components/NotificationsBell";
@@ -13,6 +13,7 @@ const navItems: NavItem[] = [
   { to: "/hub", icon: Users, label: "Party Hub" },
   { to: "/marketplace", icon: Store, label: "Marketplace" },
   { to: "/feed", icon: Activity, label: "Feed" },
+  { to: "/inventory", icon: Package, label: "Inventory" },
   { to: "/wishlist", icon: Heart, label: "Wishlist" },
   { to: "/profile", icon: User, label: "Profile" },
   { to: "/admin", icon: Shield, label: "Admin" },
