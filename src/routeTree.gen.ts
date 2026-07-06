@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WishlistRouteImport } from './routes/wishlist'
 import { Route as WalletRouteImport } from './routes/wallet'
 import { Route as TemplatesRouteImport } from './routes/templates'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -17,22 +18,34 @@ import { Route as SearchRouteImport } from './routes/search'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as ProRouteImport } from './routes/pro'
 import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as ModerationRouteImport } from './routes/moderation'
 import { Route as MarketplaceRouteImport } from './routes/marketplace'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LegalRouteImport } from './routes/legal'
 import { Route as HubRouteImport } from './routes/hub'
+import { Route as FeedRouteImport } from './routes/feed'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CreateRouteImport } from './routes/create'
+import { Route as CollectionsRouteImport } from './routes/collections'
 import { Route as ChangelogRouteImport } from './routes/changelog'
 import { Route as BuilderRouteImport } from './routes/builder'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MarketplaceIndexRouteImport } from './routes/marketplace.index'
+import { Route as UHandleRouteImport } from './routes/u.$handle'
 import { Route as MarketplaceListRouteImport } from './routes/marketplace.list'
 import { Route as MarketplaceAssetIdRouteImport } from './routes/marketplace.$assetId'
 import { Route as LegalTermsRouteImport } from './routes/legal.terms'
 import { Route as LegalPrivacyRouteImport } from './routes/legal.privacy'
 import { Route as LegalCreatorAgreementRouteImport } from './routes/legal.creator-agreement'
+import { Route as GSlugRouteImport } from './routes/g.$slug'
+import { Route as CollectionsCollectionIdRouteImport } from './routes/collections.$collectionId'
 
+const WishlistRoute = WishlistRouteImport.update({
+  id: '/wishlist',
+  path: '/wishlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WalletRoute = WalletRouteImport.update({
   id: '/wallet',
   path: '/wallet',
@@ -73,6 +86,11 @@ const NotificationsRoute = NotificationsRouteImport.update({
   path: '/notifications',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ModerationRoute = ModerationRouteImport.update({
+  id: '/moderation',
+  path: '/moderation',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MarketplaceRoute = MarketplaceRouteImport.update({
   id: '/marketplace',
   path: '/marketplace',
@@ -93,6 +111,11 @@ const HubRoute = HubRouteImport.update({
   path: '/hub',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FeedRoute = FeedRouteImport.update({
+  id: '/feed',
+  path: '/feed',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -101,6 +124,11 @@ const DashboardRoute = DashboardRouteImport.update({
 const CreateRoute = CreateRouteImport.update({
   id: '/create',
   path: '/create',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollectionsRoute = CollectionsRouteImport.update({
+  id: '/collections',
+  path: '/collections',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChangelogRoute = ChangelogRouteImport.update({
@@ -113,6 +141,11 @@ const BuilderRoute = BuilderRouteImport.update({
   path: '/builder',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -122,6 +155,11 @@ const MarketplaceIndexRoute = MarketplaceIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => MarketplaceRoute,
+} as any)
+const UHandleRoute = UHandleRouteImport.update({
+  id: '/u/$handle',
+  path: '/u/$handle',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const MarketplaceListRoute = MarketplaceListRouteImport.update({
   id: '/list',
@@ -148,17 +186,31 @@ const LegalCreatorAgreementRoute = LegalCreatorAgreementRouteImport.update({
   path: '/creator-agreement',
   getParentRoute: () => LegalRoute,
 } as any)
+const GSlugRoute = GSlugRouteImport.update({
+  id: '/g/$slug',
+  path: '/g/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollectionsCollectionIdRoute = CollectionsCollectionIdRouteImport.update({
+  id: '/$collectionId',
+  path: '/$collectionId',
+  getParentRoute: () => CollectionsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/builder': typeof BuilderRoute
   '/changelog': typeof ChangelogRoute
+  '/collections': typeof CollectionsRouteWithChildren
   '/create': typeof CreateRoute
   '/dashboard': typeof DashboardRoute
+  '/feed': typeof FeedRoute
   '/hub': typeof HubRoute
   '/legal': typeof LegalRouteWithChildren
   '/login': typeof LoginRoute
   '/marketplace': typeof MarketplaceRouteWithChildren
+  '/moderation': typeof ModerationRoute
   '/notifications': typeof NotificationsRoute
   '/pro': typeof ProRoute
   '/profile': typeof ProfileRoute
@@ -167,22 +219,30 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/templates': typeof TemplatesRoute
   '/wallet': typeof WalletRoute
+  '/wishlist': typeof WishlistRoute
+  '/collections/$collectionId': typeof CollectionsCollectionIdRoute
+  '/g/$slug': typeof GSlugRoute
   '/legal/creator-agreement': typeof LegalCreatorAgreementRoute
   '/legal/privacy': typeof LegalPrivacyRoute
   '/legal/terms': typeof LegalTermsRoute
   '/marketplace/$assetId': typeof MarketplaceAssetIdRoute
   '/marketplace/list': typeof MarketplaceListRoute
+  '/u/$handle': typeof UHandleRoute
   '/marketplace/': typeof MarketplaceIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/builder': typeof BuilderRoute
   '/changelog': typeof ChangelogRoute
+  '/collections': typeof CollectionsRouteWithChildren
   '/create': typeof CreateRoute
   '/dashboard': typeof DashboardRoute
+  '/feed': typeof FeedRoute
   '/hub': typeof HubRoute
   '/legal': typeof LegalRouteWithChildren
   '/login': typeof LoginRoute
+  '/moderation': typeof ModerationRoute
   '/notifications': typeof NotificationsRoute
   '/pro': typeof ProRoute
   '/profile': typeof ProfileRoute
@@ -191,24 +251,32 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/templates': typeof TemplatesRoute
   '/wallet': typeof WalletRoute
+  '/wishlist': typeof WishlistRoute
+  '/collections/$collectionId': typeof CollectionsCollectionIdRoute
+  '/g/$slug': typeof GSlugRoute
   '/legal/creator-agreement': typeof LegalCreatorAgreementRoute
   '/legal/privacy': typeof LegalPrivacyRoute
   '/legal/terms': typeof LegalTermsRoute
   '/marketplace/$assetId': typeof MarketplaceAssetIdRoute
   '/marketplace/list': typeof MarketplaceListRoute
+  '/u/$handle': typeof UHandleRoute
   '/marketplace': typeof MarketplaceIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/builder': typeof BuilderRoute
   '/changelog': typeof ChangelogRoute
+  '/collections': typeof CollectionsRouteWithChildren
   '/create': typeof CreateRoute
   '/dashboard': typeof DashboardRoute
+  '/feed': typeof FeedRoute
   '/hub': typeof HubRoute
   '/legal': typeof LegalRouteWithChildren
   '/login': typeof LoginRoute
   '/marketplace': typeof MarketplaceRouteWithChildren
+  '/moderation': typeof ModerationRoute
   '/notifications': typeof NotificationsRoute
   '/pro': typeof ProRoute
   '/profile': typeof ProfileRoute
@@ -217,25 +285,33 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/templates': typeof TemplatesRoute
   '/wallet': typeof WalletRoute
+  '/wishlist': typeof WishlistRoute
+  '/collections/$collectionId': typeof CollectionsCollectionIdRoute
+  '/g/$slug': typeof GSlugRoute
   '/legal/creator-agreement': typeof LegalCreatorAgreementRoute
   '/legal/privacy': typeof LegalPrivacyRoute
   '/legal/terms': typeof LegalTermsRoute
   '/marketplace/$assetId': typeof MarketplaceAssetIdRoute
   '/marketplace/list': typeof MarketplaceListRoute
+  '/u/$handle': typeof UHandleRoute
   '/marketplace/': typeof MarketplaceIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/builder'
     | '/changelog'
+    | '/collections'
     | '/create'
     | '/dashboard'
+    | '/feed'
     | '/hub'
     | '/legal'
     | '/login'
     | '/marketplace'
+    | '/moderation'
     | '/notifications'
     | '/pro'
     | '/profile'
@@ -244,22 +320,30 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/templates'
     | '/wallet'
+    | '/wishlist'
+    | '/collections/$collectionId'
+    | '/g/$slug'
     | '/legal/creator-agreement'
     | '/legal/privacy'
     | '/legal/terms'
     | '/marketplace/$assetId'
     | '/marketplace/list'
+    | '/u/$handle'
     | '/marketplace/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
     | '/builder'
     | '/changelog'
+    | '/collections'
     | '/create'
     | '/dashboard'
+    | '/feed'
     | '/hub'
     | '/legal'
     | '/login'
+    | '/moderation'
     | '/notifications'
     | '/pro'
     | '/profile'
@@ -268,23 +352,31 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/templates'
     | '/wallet'
+    | '/wishlist'
+    | '/collections/$collectionId'
+    | '/g/$slug'
     | '/legal/creator-agreement'
     | '/legal/privacy'
     | '/legal/terms'
     | '/marketplace/$assetId'
     | '/marketplace/list'
+    | '/u/$handle'
     | '/marketplace'
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/builder'
     | '/changelog'
+    | '/collections'
     | '/create'
     | '/dashboard'
+    | '/feed'
     | '/hub'
     | '/legal'
     | '/login'
     | '/marketplace'
+    | '/moderation'
     | '/notifications'
     | '/pro'
     | '/profile'
@@ -293,24 +385,32 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/templates'
     | '/wallet'
+    | '/wishlist'
+    | '/collections/$collectionId'
+    | '/g/$slug'
     | '/legal/creator-agreement'
     | '/legal/privacy'
     | '/legal/terms'
     | '/marketplace/$assetId'
     | '/marketplace/list'
+    | '/u/$handle'
     | '/marketplace/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
   BuilderRoute: typeof BuilderRoute
   ChangelogRoute: typeof ChangelogRoute
+  CollectionsRoute: typeof CollectionsRouteWithChildren
   CreateRoute: typeof CreateRoute
   DashboardRoute: typeof DashboardRoute
+  FeedRoute: typeof FeedRoute
   HubRoute: typeof HubRoute
   LegalRoute: typeof LegalRouteWithChildren
   LoginRoute: typeof LoginRoute
   MarketplaceRoute: typeof MarketplaceRouteWithChildren
+  ModerationRoute: typeof ModerationRoute
   NotificationsRoute: typeof NotificationsRoute
   ProRoute: typeof ProRoute
   ProfileRoute: typeof ProfileRoute
@@ -319,10 +419,20 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TemplatesRoute: typeof TemplatesRoute
   WalletRoute: typeof WalletRoute
+  WishlistRoute: typeof WishlistRoute
+  GSlugRoute: typeof GSlugRoute
+  UHandleRoute: typeof UHandleRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/wishlist': {
+      id: '/wishlist'
+      path: '/wishlist'
+      fullPath: '/wishlist'
+      preLoaderRoute: typeof WishlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/wallet': {
       id: '/wallet'
       path: '/wallet'
@@ -379,6 +489,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NotificationsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/moderation': {
+      id: '/moderation'
+      path: '/moderation'
+      fullPath: '/moderation'
+      preLoaderRoute: typeof ModerationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/marketplace': {
       id: '/marketplace'
       path: '/marketplace'
@@ -407,6 +524,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HubRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/feed': {
+      id: '/feed'
+      path: '/feed'
+      fullPath: '/feed'
+      preLoaderRoute: typeof FeedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
@@ -419,6 +543,13 @@ declare module '@tanstack/react-router' {
       path: '/create'
       fullPath: '/create'
       preLoaderRoute: typeof CreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collections': {
+      id: '/collections'
+      path: '/collections'
+      fullPath: '/collections'
+      preLoaderRoute: typeof CollectionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/changelog': {
@@ -435,6 +566,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BuilderRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -448,6 +586,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/marketplace/'
       preLoaderRoute: typeof MarketplaceIndexRouteImport
       parentRoute: typeof MarketplaceRoute
+    }
+    '/u/$handle': {
+      id: '/u/$handle'
+      path: '/u/$handle'
+      fullPath: '/u/$handle'
+      preLoaderRoute: typeof UHandleRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/marketplace/list': {
       id: '/marketplace/list'
@@ -484,8 +629,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LegalCreatorAgreementRouteImport
       parentRoute: typeof LegalRoute
     }
+    '/g/$slug': {
+      id: '/g/$slug'
+      path: '/g/$slug'
+      fullPath: '/g/$slug'
+      preLoaderRoute: typeof GSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collections/$collectionId': {
+      id: '/collections/$collectionId'
+      path: '/$collectionId'
+      fullPath: '/collections/$collectionId'
+      preLoaderRoute: typeof CollectionsCollectionIdRouteImport
+      parentRoute: typeof CollectionsRoute
+    }
   }
 }
+
+interface CollectionsRouteChildren {
+  CollectionsCollectionIdRoute: typeof CollectionsCollectionIdRoute
+}
+
+const CollectionsRouteChildren: CollectionsRouteChildren = {
+  CollectionsCollectionIdRoute: CollectionsCollectionIdRoute,
+}
+
+const CollectionsRouteWithChildren = CollectionsRoute._addFileChildren(
+  CollectionsRouteChildren,
+)
 
 interface LegalRouteChildren {
   LegalCreatorAgreementRoute: typeof LegalCreatorAgreementRoute
@@ -519,14 +690,18 @@ const MarketplaceRouteWithChildren = MarketplaceRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
   BuilderRoute: BuilderRoute,
   ChangelogRoute: ChangelogRoute,
+  CollectionsRoute: CollectionsRouteWithChildren,
   CreateRoute: CreateRoute,
   DashboardRoute: DashboardRoute,
+  FeedRoute: FeedRoute,
   HubRoute: HubRoute,
   LegalRoute: LegalRouteWithChildren,
   LoginRoute: LoginRoute,
   MarketplaceRoute: MarketplaceRouteWithChildren,
+  ModerationRoute: ModerationRoute,
   NotificationsRoute: NotificationsRoute,
   ProRoute: ProRoute,
   ProfileRoute: ProfileRoute,
@@ -535,6 +710,9 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TemplatesRoute: TemplatesRoute,
   WalletRoute: WalletRoute,
+  WishlistRoute: WishlistRoute,
+  GSlugRoute: GSlugRoute,
+  UHandleRoute: UHandleRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
