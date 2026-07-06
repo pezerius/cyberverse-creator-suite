@@ -22,6 +22,7 @@ import { Route as ModerationRouteImport } from './routes/moderation'
 import { Route as MarketplaceRouteImport } from './routes/marketplace'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LegalRouteImport } from './routes/legal'
+import { Route as InventoryRouteImport } from './routes/inventory'
 import { Route as HubRouteImport } from './routes/hub'
 import { Route as FeedRouteImport } from './routes/feed'
 import { Route as DashboardRouteImport } from './routes/dashboard'
@@ -104,6 +105,11 @@ const LoginRoute = LoginRouteImport.update({
 const LegalRoute = LegalRouteImport.update({
   id: '/legal',
   path: '/legal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InventoryRoute = InventoryRouteImport.update({
+  id: '/inventory',
+  path: '/inventory',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HubRoute = HubRouteImport.update({
@@ -207,6 +213,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRoute
   '/feed': typeof FeedRoute
   '/hub': typeof HubRoute
+  '/inventory': typeof InventoryRoute
   '/legal': typeof LegalRouteWithChildren
   '/login': typeof LoginRoute
   '/marketplace': typeof MarketplaceRouteWithChildren
@@ -240,6 +247,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardRoute
   '/feed': typeof FeedRoute
   '/hub': typeof HubRoute
+  '/inventory': typeof InventoryRoute
   '/legal': typeof LegalRouteWithChildren
   '/login': typeof LoginRoute
   '/moderation': typeof ModerationRoute
@@ -273,6 +281,7 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRoute
   '/feed': typeof FeedRoute
   '/hub': typeof HubRoute
+  '/inventory': typeof InventoryRoute
   '/legal': typeof LegalRouteWithChildren
   '/login': typeof LoginRoute
   '/marketplace': typeof MarketplaceRouteWithChildren
@@ -308,6 +317,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/feed'
     | '/hub'
+    | '/inventory'
     | '/legal'
     | '/login'
     | '/marketplace'
@@ -341,6 +351,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/feed'
     | '/hub'
+    | '/inventory'
     | '/legal'
     | '/login'
     | '/moderation'
@@ -373,6 +384,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/feed'
     | '/hub'
+    | '/inventory'
     | '/legal'
     | '/login'
     | '/marketplace'
@@ -407,6 +419,7 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRoute
   FeedRoute: typeof FeedRoute
   HubRoute: typeof HubRoute
+  InventoryRoute: typeof InventoryRoute
   LegalRoute: typeof LegalRouteWithChildren
   LoginRoute: typeof LoginRoute
   MarketplaceRoute: typeof MarketplaceRouteWithChildren
@@ -515,6 +528,13 @@ declare module '@tanstack/react-router' {
       path: '/legal'
       fullPath: '/legal'
       preLoaderRoute: typeof LegalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inventory': {
+      id: '/inventory'
+      path: '/inventory'
+      fullPath: '/inventory'
+      preLoaderRoute: typeof InventoryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/hub': {
@@ -698,6 +718,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRoute,
   FeedRoute: FeedRoute,
   HubRoute: HubRoute,
+  InventoryRoute: InventoryRoute,
   LegalRoute: LegalRouteWithChildren,
   LoginRoute: LoginRoute,
   MarketplaceRoute: MarketplaceRouteWithChildren,
@@ -717,13 +738,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
