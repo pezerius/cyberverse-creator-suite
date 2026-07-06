@@ -1,6 +1,8 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Gamepad2, Hammer, Users, Store, User, Coins } from "lucide-react";
+import { Gamepad2, Hammer, Users, Store, User, Coins, Wallet, Settings } from "lucide-react";
 import type { ReactNode } from "react";
+import { CommandPalette, CommandKButton } from "@/components/CommandPalette";
+import { NotificationsBell } from "@/components/NotificationsBell";
 
 type NavItem = {
   to: string;
@@ -23,6 +25,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen w-full flex text-foreground">
+      <CommandPalette />
       {/* Left icon rail */}
       <aside className="w-20 shrink-0 border-r-2 border-ink bg-white flex flex-col items-center py-4 gap-3 sticky top-0 h-screen z-30">
         <Link to="/create" className="mb-2 group" aria-label="Pixels Studio home">
@@ -94,17 +97,22 @@ function TopBar() {
         </span>
       </div>
       <div className="ml-auto flex items-center gap-3">
-        <div className="hidden md:flex items-center gap-2 px-3 h-9 rounded-full bg-white border-2 border-ink shadow-[2px_2px_0_0_var(--ink)]">
+        <CommandKButton />
+        <Link to="/wallet" className="hidden md:flex items-center gap-2 px-3 h-9 rounded-full bg-white border-2 border-ink shadow-[2px_2px_0_0_var(--ink)] hover:translate-y-[-1px] transition">
           <Coins className="w-4 h-4 text-[oklch(0.55_0.22_45)]" />
           <span className="font-mono text-sm font-bold text-ink">12,480</span>
           <span className="font-mono text-[10px] uppercase tracking-widest text-ink/60">$PIXEL</span>
-        </div>
-        <button className="text-xs font-mono uppercase tracking-wider font-bold px-4 h-9 rounded-full bg-accent border-2 border-ink shadow-[2px_2px_0_0_var(--ink)] hover:translate-y-[-1px] transition-transform">
+        </Link>
+        <Link to="/wallet" className="text-xs font-mono uppercase tracking-wider font-bold px-4 h-9 rounded-full bg-accent border-2 border-ink shadow-[2px_2px_0_0_var(--ink)] hover:translate-y-[-1px] transition-transform inline-flex items-center">
           + Top up
-        </button>
-        <div className="w-10 h-10 rounded-full bg-primary border-2 border-ink shadow-[2px_2px_0_0_var(--ink)] flex items-center justify-center text-primary-foreground font-mono text-sm font-bold">
+        </Link>
+        <NotificationsBell />
+        <Link to="/settings" aria-label="Settings" className="w-10 h-10 rounded-full bg-white border-2 border-ink shadow-[2px_2px_0_0_var(--ink)] flex items-center justify-center hover:translate-y-[-1px] transition">
+          <Settings className="w-4 h-4" />
+        </Link>
+        <Link to="/profile" className="w-10 h-10 rounded-full bg-primary border-2 border-ink shadow-[2px_2px_0_0_var(--ink)] flex items-center justify-center text-primary-foreground font-mono text-sm font-bold">
           NX
-        </div>
+        </Link>
       </div>
     </header>
   );

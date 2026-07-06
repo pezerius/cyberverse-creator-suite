@@ -9,21 +9,35 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WalletRouteImport } from './routes/wallet'
 import { Route as TemplatesRouteImport } from './routes/templates'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SearchRouteImport } from './routes/search'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as ProRouteImport } from './routes/pro'
+import { Route as NotificationsRouteImport } from './routes/notifications'
 import { Route as MarketplaceRouteImport } from './routes/marketplace'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as LegalRouteImport } from './routes/legal'
 import { Route as HubRouteImport } from './routes/hub'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CreateRouteImport } from './routes/create'
+import { Route as ChangelogRouteImport } from './routes/changelog'
 import { Route as BuilderRouteImport } from './routes/builder'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MarketplaceIndexRouteImport } from './routes/marketplace.index'
 import { Route as MarketplaceListRouteImport } from './routes/marketplace.list'
 import { Route as MarketplaceAssetIdRouteImport } from './routes/marketplace.$assetId'
+import { Route as LegalTermsRouteImport } from './routes/legal.terms'
+import { Route as LegalPrivacyRouteImport } from './routes/legal.privacy'
+import { Route as LegalCreatorAgreementRouteImport } from './routes/legal.creator-agreement'
 
+const WalletRoute = WalletRouteImport.update({
+  id: '/wallet',
+  path: '/wallet',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TemplatesRoute = TemplatesRouteImport.update({
   id: '/templates',
   path: '/templates',
@@ -32,6 +46,16 @@ const TemplatesRoute = TemplatesRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileRoute = ProfileRouteImport.update({
@@ -44,6 +68,11 @@ const ProRoute = ProRouteImport.update({
   path: '/pro',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MarketplaceRoute = MarketplaceRouteImport.update({
   id: '/marketplace',
   path: '/marketplace',
@@ -52,6 +81,11 @@ const MarketplaceRoute = MarketplaceRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalRoute = LegalRouteImport.update({
+  id: '/legal',
+  path: '/legal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HubRoute = HubRouteImport.update({
@@ -67,6 +101,11 @@ const DashboardRoute = DashboardRouteImport.update({
 const CreateRoute = CreateRouteImport.update({
   id: '/create',
   path: '/create',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChangelogRoute = ChangelogRouteImport.update({
+  id: '/changelog',
+  path: '/changelog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BuilderRoute = BuilderRouteImport.update({
@@ -94,19 +133,43 @@ const MarketplaceAssetIdRoute = MarketplaceAssetIdRouteImport.update({
   path: '/$assetId',
   getParentRoute: () => MarketplaceRoute,
 } as any)
+const LegalTermsRoute = LegalTermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => LegalRoute,
+} as any)
+const LegalPrivacyRoute = LegalPrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => LegalRoute,
+} as any)
+const LegalCreatorAgreementRoute = LegalCreatorAgreementRouteImport.update({
+  id: '/creator-agreement',
+  path: '/creator-agreement',
+  getParentRoute: () => LegalRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/builder': typeof BuilderRoute
+  '/changelog': typeof ChangelogRoute
   '/create': typeof CreateRoute
   '/dashboard': typeof DashboardRoute
   '/hub': typeof HubRoute
+  '/legal': typeof LegalRouteWithChildren
   '/login': typeof LoginRoute
   '/marketplace': typeof MarketplaceRouteWithChildren
+  '/notifications': typeof NotificationsRoute
   '/pro': typeof ProRoute
   '/profile': typeof ProfileRoute
+  '/search': typeof SearchRoute
+  '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/templates': typeof TemplatesRoute
+  '/wallet': typeof WalletRoute
+  '/legal/creator-agreement': typeof LegalCreatorAgreementRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/terms': typeof LegalTermsRoute
   '/marketplace/$assetId': typeof MarketplaceAssetIdRoute
   '/marketplace/list': typeof MarketplaceListRoute
   '/marketplace/': typeof MarketplaceIndexRoute
@@ -114,14 +177,23 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/builder': typeof BuilderRoute
+  '/changelog': typeof ChangelogRoute
   '/create': typeof CreateRoute
   '/dashboard': typeof DashboardRoute
   '/hub': typeof HubRoute
+  '/legal': typeof LegalRouteWithChildren
   '/login': typeof LoginRoute
+  '/notifications': typeof NotificationsRoute
   '/pro': typeof ProRoute
   '/profile': typeof ProfileRoute
+  '/search': typeof SearchRoute
+  '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/templates': typeof TemplatesRoute
+  '/wallet': typeof WalletRoute
+  '/legal/creator-agreement': typeof LegalCreatorAgreementRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/terms': typeof LegalTermsRoute
   '/marketplace/$assetId': typeof MarketplaceAssetIdRoute
   '/marketplace/list': typeof MarketplaceListRoute
   '/marketplace': typeof MarketplaceIndexRoute
@@ -130,15 +202,24 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/builder': typeof BuilderRoute
+  '/changelog': typeof ChangelogRoute
   '/create': typeof CreateRoute
   '/dashboard': typeof DashboardRoute
   '/hub': typeof HubRoute
+  '/legal': typeof LegalRouteWithChildren
   '/login': typeof LoginRoute
   '/marketplace': typeof MarketplaceRouteWithChildren
+  '/notifications': typeof NotificationsRoute
   '/pro': typeof ProRoute
   '/profile': typeof ProfileRoute
+  '/search': typeof SearchRoute
+  '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/templates': typeof TemplatesRoute
+  '/wallet': typeof WalletRoute
+  '/legal/creator-agreement': typeof LegalCreatorAgreementRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/terms': typeof LegalTermsRoute
   '/marketplace/$assetId': typeof MarketplaceAssetIdRoute
   '/marketplace/list': typeof MarketplaceListRoute
   '/marketplace/': typeof MarketplaceIndexRoute
@@ -148,15 +229,24 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/builder'
+    | '/changelog'
     | '/create'
     | '/dashboard'
     | '/hub'
+    | '/legal'
     | '/login'
     | '/marketplace'
+    | '/notifications'
     | '/pro'
     | '/profile'
+    | '/search'
+    | '/settings'
     | '/sitemap.xml'
     | '/templates'
+    | '/wallet'
+    | '/legal/creator-agreement'
+    | '/legal/privacy'
+    | '/legal/terms'
     | '/marketplace/$assetId'
     | '/marketplace/list'
     | '/marketplace/'
@@ -164,14 +254,23 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/builder'
+    | '/changelog'
     | '/create'
     | '/dashboard'
     | '/hub'
+    | '/legal'
     | '/login'
+    | '/notifications'
     | '/pro'
     | '/profile'
+    | '/search'
+    | '/settings'
     | '/sitemap.xml'
     | '/templates'
+    | '/wallet'
+    | '/legal/creator-agreement'
+    | '/legal/privacy'
+    | '/legal/terms'
     | '/marketplace/$assetId'
     | '/marketplace/list'
     | '/marketplace'
@@ -179,15 +278,24 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/builder'
+    | '/changelog'
     | '/create'
     | '/dashboard'
     | '/hub'
+    | '/legal'
     | '/login'
     | '/marketplace'
+    | '/notifications'
     | '/pro'
     | '/profile'
+    | '/search'
+    | '/settings'
     | '/sitemap.xml'
     | '/templates'
+    | '/wallet'
+    | '/legal/creator-agreement'
+    | '/legal/privacy'
+    | '/legal/terms'
     | '/marketplace/$assetId'
     | '/marketplace/list'
     | '/marketplace/'
@@ -196,19 +304,32 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BuilderRoute: typeof BuilderRoute
+  ChangelogRoute: typeof ChangelogRoute
   CreateRoute: typeof CreateRoute
   DashboardRoute: typeof DashboardRoute
   HubRoute: typeof HubRoute
+  LegalRoute: typeof LegalRouteWithChildren
   LoginRoute: typeof LoginRoute
   MarketplaceRoute: typeof MarketplaceRouteWithChildren
+  NotificationsRoute: typeof NotificationsRoute
   ProRoute: typeof ProRoute
   ProfileRoute: typeof ProfileRoute
+  SearchRoute: typeof SearchRoute
+  SettingsRoute: typeof SettingsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TemplatesRoute: typeof TemplatesRoute
+  WalletRoute: typeof WalletRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/wallet': {
+      id: '/wallet'
+      path: '/wallet'
+      fullPath: '/wallet'
+      preLoaderRoute: typeof WalletRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/templates': {
       id: '/templates'
       path: '/templates'
@@ -221,6 +342,20 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/profile': {
@@ -237,6 +372,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/marketplace': {
       id: '/marketplace'
       path: '/marketplace'
@@ -249,6 +391,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal': {
+      id: '/legal'
+      path: '/legal'
+      fullPath: '/legal'
+      preLoaderRoute: typeof LegalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/hub': {
@@ -270,6 +419,13 @@ declare module '@tanstack/react-router' {
       path: '/create'
       fullPath: '/create'
       preLoaderRoute: typeof CreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/changelog': {
+      id: '/changelog'
+      path: '/changelog'
+      fullPath: '/changelog'
+      preLoaderRoute: typeof ChangelogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/builder': {
@@ -307,8 +463,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MarketplaceAssetIdRouteImport
       parentRoute: typeof MarketplaceRoute
     }
+    '/legal/terms': {
+      id: '/legal/terms'
+      path: '/terms'
+      fullPath: '/legal/terms'
+      preLoaderRoute: typeof LegalTermsRouteImport
+      parentRoute: typeof LegalRoute
+    }
+    '/legal/privacy': {
+      id: '/legal/privacy'
+      path: '/privacy'
+      fullPath: '/legal/privacy'
+      preLoaderRoute: typeof LegalPrivacyRouteImport
+      parentRoute: typeof LegalRoute
+    }
+    '/legal/creator-agreement': {
+      id: '/legal/creator-agreement'
+      path: '/creator-agreement'
+      fullPath: '/legal/creator-agreement'
+      preLoaderRoute: typeof LegalCreatorAgreementRouteImport
+      parentRoute: typeof LegalRoute
+    }
   }
 }
+
+interface LegalRouteChildren {
+  LegalCreatorAgreementRoute: typeof LegalCreatorAgreementRoute
+  LegalPrivacyRoute: typeof LegalPrivacyRoute
+  LegalTermsRoute: typeof LegalTermsRoute
+}
+
+const LegalRouteChildren: LegalRouteChildren = {
+  LegalCreatorAgreementRoute: LegalCreatorAgreementRoute,
+  LegalPrivacyRoute: LegalPrivacyRoute,
+  LegalTermsRoute: LegalTermsRoute,
+}
+
+const LegalRouteWithChildren = LegalRoute._addFileChildren(LegalRouteChildren)
 
 interface MarketplaceRouteChildren {
   MarketplaceAssetIdRoute: typeof MarketplaceAssetIdRoute
@@ -329,15 +520,21 @@ const MarketplaceRouteWithChildren = MarketplaceRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BuilderRoute: BuilderRoute,
+  ChangelogRoute: ChangelogRoute,
   CreateRoute: CreateRoute,
   DashboardRoute: DashboardRoute,
   HubRoute: HubRoute,
+  LegalRoute: LegalRouteWithChildren,
   LoginRoute: LoginRoute,
   MarketplaceRoute: MarketplaceRouteWithChildren,
+  NotificationsRoute: NotificationsRoute,
   ProRoute: ProRoute,
   ProfileRoute: ProfileRoute,
+  SearchRoute: SearchRoute,
+  SettingsRoute: SettingsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TemplatesRoute: TemplatesRoute,
+  WalletRoute: WalletRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
