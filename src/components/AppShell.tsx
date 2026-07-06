@@ -2,13 +2,21 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Gamepad2, Hammer, Users, Store, User, Coins } from "lucide-react";
 import type { ReactNode } from "react";
 
-const navItems = [
+type NavItem = {
+  to: string;
+  icon: typeof Gamepad2;
+  label: string;
+  disabled?: boolean;
+  tip?: string;
+};
+
+const navItems: NavItem[] = [
   { to: "/play", icon: Gamepad2, label: "Play", disabled: true, tip: "CyberVerse core game" },
   { to: "/create", icon: Hammer, label: "Create" },
   { to: "/hub", icon: Users, label: "Party Hub" },
   { to: "/marketplace", icon: Store, label: "Marketplace" },
   { to: "/profile", icon: User, label: "Profile" },
-] as const;
+];
 
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
