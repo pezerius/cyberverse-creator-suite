@@ -243,8 +243,8 @@ function PayoutModal({ onClose }: { onClose: () => void }) {
 function TopupModal({ onClose }: { onClose: () => void }) {
   const [preset, setPreset] = useState(5000);
   const [step, setStep] = useState<"form" | "pending" | "done">("form");
-  const depositAddress = "0xPX7a...9c4E";
-  const network = "Pixels Chain · Mainnet";
+  const depositAddress = "ronin:0x7a3f...9c4E";
+  const network = "Ronin Network";
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/50 backdrop-blur-sm" onClick={onClose}>
       <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="w-full max-w-md bg-background border-2 border-ink rounded-3xl shadow-[6px_6px_0_0_var(--ink)] overflow-hidden" onClick={(e) => e.stopPropagation()}>
