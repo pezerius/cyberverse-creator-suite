@@ -37,12 +37,12 @@ const ownedAssets: OwnedAsset[] = [
   { id: "a8", purchased: "2087-01-04", order: "px_07211", usedIn: ["Data Heist", "Grid Duel"] },
 ];
 
-type UGC = { id: string; name: string; kind: "Game" | "Asset" | "Template"; status: "Published" | "Draft" | "In review"; updated: string; grad: string; emoji: string; installs?: string };
+type UGC = { id: string; name: string; kind: "Game" | "Asset" | "Template"; status: "Published" | "Draft" | "In review"; updated: string; grad: string; emoji: string; installs?: string; manage?: { kind: "asset" | "game"; id: string } };
 const myUGC: UGC[] = [
-  { id: "u1", name: "Rooftop Tag Arena",    kind: "Game",     status: "Published", updated: "2 days ago",   grad: "from-primary/40 to-[oklch(0.72_0.18_290)]/30", emoji: "🌃", installs: "48,120" },
-  { id: "u2", name: "Neon Snake++",         kind: "Game",     status: "Published", updated: "yesterday",    grad: "from-accent/60 to-[oklch(0.85_0.10_180)]/30",  emoji: "🐍", installs: "231,004" },
+  { id: "u1", name: "Rooftop Tag Arena",    kind: "Game",     status: "Published", updated: "2 days ago",   grad: "from-primary/40 to-[oklch(0.72_0.18_290)]/30", emoji: "🌃", installs: "48,120", manage: { kind: "game", id: "blade-runners-4884" } },
+  { id: "u2", name: "Neon Snake++",         kind: "Game",     status: "Published", updated: "yesterday",    grad: "from-accent/60 to-[oklch(0.85_0.10_180)]/30",  emoji: "🐍", installs: "231,004", manage: { kind: "game", id: "neon-snake" } },
   { id: "u3", name: "Karaoke Bar",          kind: "Game",     status: "Draft",     updated: "5 days ago",   grad: "from-[oklch(0.72_0.18_290)]/50 to-primary/30", emoji: "🎤" },
-  { id: "u4", name: "Runner Sprite Remix",  kind: "Asset",    status: "In review", updated: "1 day ago",    grad: "from-accent/60 to-primary/20",                 emoji: "🎨" },
+  { id: "u4", name: "Runner Sprite Remix",  kind: "Asset",    status: "In review", updated: "1 day ago",    grad: "from-accent/60 to-primary/20",                 emoji: "🎨", manage: { kind: "asset", id: "a2" } },
   { id: "u5", name: "Rooftop Chase Template", kind: "Template", status: "Published", updated: "3 weeks ago",grad: "from-primary/50 to-accent/30",                 emoji: "🧩", installs: "1,204" },
 ];
 
@@ -228,7 +228,11 @@ function UGCTab({ query }: { query: string }) {
             </div>
             <div className="mt-4 flex items-center gap-2">
               <Link to="/builder" className="flex-1"><HudButton className="w-full" variant="ghost">Open in builder</HudButton></Link>
-              <Link to="/dashboard"><button className="w-10 h-10 rounded-full bg-white border-2 border-ink shadow-[2px_2px_0_0_var(--ink)] flex items-center justify-center"><ExternalLink className="w-4 h-4" /></button></Link>
+              {u.manage ? (
+                <Link to="/manage/$kind/$id" params={{ kind: u.manage.kind, id: u.manage.id }}><HudButton size="sm" variant="secondary">Manage</HudButton></Link>
+              ) : (
+                <HudButton size="sm" variant="secondary" disabled>Manage</HudButton>
+              )}
             </div>
           </div>
         </HudCard>
