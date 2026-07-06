@@ -5,7 +5,7 @@ import { Sparkles, Search, Star, Heart, Filter, X, Check, CreditCard, Wallet, Sh
 import { useMemo, useState } from "react";
 import { assets, licenseTone, type Asset, type AssetType, type License } from "@/lib/marketplace-data";
 
-export const Route = createFileRoute("/marketplace")({
+export const Route = createFileRoute("/marketplace/")({
   head: () => ({
     meta: [{ title: "Asset Marketplace — Pixels Studio" }, { name: "description", content: "Creator-to-creator marketplace for sprites, SFX, and tilesets." }],
   }),
