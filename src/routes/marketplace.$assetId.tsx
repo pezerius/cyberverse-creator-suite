@@ -1,8 +1,13 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { AppShell } from "@/components/AppShell";
-import { HudButton, HudCard, Chip, SectionHeader, Stat } from "@/components/hud";
-import { assets, getAsset, licenseTone, type License, type Asset } from "@/lib/marketplace-data";
-import { ArrowLeft, Star, Download, Heart, Share2, Flag, Package, Calendar, Ruler, FileArchive, Tag, Check, X, Wallet, CreditCard, Shield, MessageSquare, ThumbsUp } from "lucide-react";
+import { HudButton, HudCard, Chip, SectionHeader } from "@/components/hud";
+import { assets, getAsset, type Asset } from "@/lib/marketplace-data";
+import { assetReviews } from "@/lib/mock-reviews";
+import { assetVersions } from "@/lib/mock-versions";
+import { SpritePlayer } from "@/components/SpritePlayer";
+import { WaveformPlayer } from "@/components/WaveformPlayer";
+import { ReportButton } from "@/components/ReportButton";
+import { ArrowLeft, Star, Download, Heart, Share2, Package, Calendar, Ruler, FileArchive, Tag, Check, Wallet, Shield, MessageSquare, ThumbsUp, X, History } from "lucide-react";
 import { useState } from "react";
 
 export const Route = createFileRoute("/marketplace/$assetId")({
