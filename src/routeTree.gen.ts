@@ -41,6 +41,7 @@ import { Route as LegalPrivacyRouteImport } from './routes/legal.privacy'
 import { Route as LegalCreatorAgreementRouteImport } from './routes/legal.creator-agreement'
 import { Route as GSlugRouteImport } from './routes/g.$slug'
 import { Route as CollectionsCollectionIdRouteImport } from './routes/collections.$collectionId'
+import { Route as ManageKindIdRouteImport } from './routes/manage.$kind.$id'
 
 const WishlistRoute = WishlistRouteImport.update({
   id: '/wishlist',
@@ -202,6 +203,11 @@ const CollectionsCollectionIdRoute = CollectionsCollectionIdRouteImport.update({
   path: '/$collectionId',
   getParentRoute: () => CollectionsRoute,
 } as any)
+const ManageKindIdRoute = ManageKindIdRouteImport.update({
+  id: '/manage/$kind/$id',
+  path: '/manage/$kind/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -236,6 +242,7 @@ export interface FileRoutesByFullPath {
   '/marketplace/list': typeof MarketplaceListRoute
   '/u/$handle': typeof UHandleRoute
   '/marketplace/': typeof MarketplaceIndexRoute
+  '/manage/$kind/$id': typeof ManageKindIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -269,6 +276,7 @@ export interface FileRoutesByTo {
   '/marketplace/list': typeof MarketplaceListRoute
   '/u/$handle': typeof UHandleRoute
   '/marketplace': typeof MarketplaceIndexRoute
+  '/manage/$kind/$id': typeof ManageKindIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -304,6 +312,7 @@ export interface FileRoutesById {
   '/marketplace/list': typeof MarketplaceListRoute
   '/u/$handle': typeof UHandleRoute
   '/marketplace/': typeof MarketplaceIndexRoute
+  '/manage/$kind/$id': typeof ManageKindIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -340,6 +349,7 @@ export interface FileRouteTypes {
     | '/marketplace/list'
     | '/u/$handle'
     | '/marketplace/'
+    | '/manage/$kind/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -373,6 +383,7 @@ export interface FileRouteTypes {
     | '/marketplace/list'
     | '/u/$handle'
     | '/marketplace'
+    | '/manage/$kind/$id'
   id:
     | '__root__'
     | '/'
@@ -407,6 +418,7 @@ export interface FileRouteTypes {
     | '/marketplace/list'
     | '/u/$handle'
     | '/marketplace/'
+    | '/manage/$kind/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -435,6 +447,7 @@ export interface RootRouteChildren {
   WishlistRoute: typeof WishlistRoute
   GSlugRoute: typeof GSlugRoute
   UHandleRoute: typeof UHandleRoute
+  ManageKindIdRoute: typeof ManageKindIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -663,6 +676,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CollectionsCollectionIdRouteImport
       parentRoute: typeof CollectionsRoute
     }
+    '/manage/$kind/$id': {
+      id: '/manage/$kind/$id'
+      path: '/manage/$kind/$id'
+      fullPath: '/manage/$kind/$id'
+      preLoaderRoute: typeof ManageKindIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -734,6 +754,7 @@ const rootRouteChildren: RootRouteChildren = {
   WishlistRoute: WishlistRoute,
   GSlugRoute: GSlugRoute,
   UHandleRoute: UHandleRoute,
+  ManageKindIdRoute: ManageKindIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
