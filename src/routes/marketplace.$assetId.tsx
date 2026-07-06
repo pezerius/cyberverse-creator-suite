@@ -386,8 +386,3 @@ function SimpleCheckout({ asset, onClose }: { asset: Asset; onClose: () => void 
   );
 }
 
-const sampleReviews = [
-  { by: "@drift.dev", stars: 5, when: "3 days ago", helpful: 12, body: "Slotted right into my project. Auto-tiling rules just work, and the artist replied to my Discord DM within an hour when I had a question." },
-  { by: "@holo.studio", stars: 5, when: "2 weeks ago", helpful: 8, body: "Best-in-class. Worth every $PIXEL — used it in two shipped games so far under the All My Games tier." },
-  { by: "@bytebrawl", stars: 4, when: "1 month ago", helpful: 3, body: "Great pack, wish there were a few more variants for the neon-signage tiles. Docked one star for that." },
-];
