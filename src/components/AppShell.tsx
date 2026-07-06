@@ -1,6 +1,8 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Gamepad2, Hammer, Users, Store, User, Coins } from "lucide-react";
+import { Gamepad2, Hammer, Users, Store, User, Coins, Wallet, Settings } from "lucide-react";
 import type { ReactNode } from "react";
+import { CommandPalette, CommandKButton } from "@/components/CommandPalette";
+import { NotificationsBell } from "@/components/NotificationsBell";
 
 type NavItem = {
   to: string;
