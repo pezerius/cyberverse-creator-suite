@@ -191,27 +191,64 @@ function AssetDetail() {
             </ul>
           </HudCard>
 
+          {/* Version history */}
+          <HudCard>
+            <div className="flex items-center gap-2 mb-3">
+              <History className="w-4 h-4" />
+              <div className="text-[10px] font-mono uppercase tracking-widest text-ink/60">// Version history</div>
+              <Chip tone="cyan" className="ml-auto">Auto-notify enabled</Chip>
+            </div>
+            <div className="space-y-3">
+              {(assetVersions[asset.id] ?? []).map((v) => (
+                <div key={v.version} className="border-l-2 border-primary pl-3 py-1">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="font-mono font-bold">{v.version}</span>
+                    <Chip tone={v.kind === "major" ? "magenta" : v.kind === "minor" ? "cyan" : "default"}>{v.kind}</Chip>
+                    <span className="text-[10px] font-mono text-ink/50">{v.date}</span>
+                    <span className="text-[10px] font-mono text-ink/50 ml-auto flex items-center gap-1"><Download className="w-3 h-3" /> {v.downloads}</span>
+                  </div>
+                  <ul className="mt-1.5 text-sm text-ink/80 space-y-1">
+                    {v.notes.map((n, i) => <li key={i} className="flex gap-2"><span className="text-primary">›</span>{n}</li>)}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <div className="mt-3 pt-3 border-t border-ink/10 text-[11px] font-mono text-ink/60">
+              License holders get an email + in-app notification on every version bump.
+            </div>
+          </HudCard>
+
           {/* Reviews */}
           <HudCard>
             <div className="flex items-center justify-between mb-4">
-              <div className="text-[10px] font-mono uppercase tracking-widest text-ink/60">// Reviews (3)</div>
-              <HudButton variant="secondary" className="h-8 px-3"><MessageSquare className="w-3.5 h-3.5" /> Write one</HudButton>
+              <div className="text-[10px] font-mono uppercase tracking-widest text-ink/60">// Reviews ({(assetReviews[asset.id] ?? []).length})</div>
+              <HudButton variant="secondary" size="sm"><MessageSquare className="w-3.5 h-3.5" /> Write one</HudButton>
             </div>
             <div className="space-y-4">
-              {sampleReviews.map((r) => (
-                <div key={r.by} className="border-t-2 border-ink/10 pt-4 first:border-0 first:pt-0">
-                  <div className="flex items-center gap-2 text-sm">
-                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground border-2 border-ink flex items-center justify-center font-mono text-[10px]">{r.by.slice(1,3).toUpperCase()}</div>
-                    <div className="font-bold">{r.by}</div>
+              {(assetReviews[asset.id] ?? []).map((r) => (
+                <div key={r.id} className="border-t-2 border-ink/10 pt-4 first:border-0 first:pt-0">
+                  <div className="flex items-center gap-2 text-sm flex-wrap">
+                    <Link to="/u/$handle" params={{ handle: r.author }} className="w-8 h-8 rounded-full bg-primary text-primary-foreground border-2 border-ink flex items-center justify-center font-mono text-[10px]">{r.avatar}</Link>
+                    <Link to="/u/$handle" params={{ handle: r.author }} className="font-bold hover:underline">@{r.author}</Link>
+                    {r.verified && <Chip tone="green"><Check className="w-3 h-3" /> Verified</Chip>}
                     <div className="flex items-center gap-0.5 text-[oklch(0.75_0.20_50)]">
-                      {[...Array(r.stars)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
+                      {[...Array(r.rating)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
                     </div>
-                    <div className="ml-auto text-[11px] font-mono text-ink/50">{r.when}</div>
+                    <div className="ml-auto text-[11px] font-mono text-ink/50">{r.ts}</div>
                   </div>
                   <p className="mt-2 text-sm text-ink/80">{r.body}</p>
                   <button className="mt-2 inline-flex items-center gap-1 text-[11px] font-mono text-ink/60 hover:text-ink"><ThumbsUp className="w-3 h-3" /> Helpful ({r.helpful})</button>
+                  {r.response && (
+                    <div className="mt-3 ml-4 pl-3 border-l-2 border-primary bg-primary/5 rounded-r-lg p-3">
+                      <div className="text-[10px] font-mono uppercase tracking-widest text-primary font-bold">{r.response.author} · {r.response.ts}</div>
+                      <p className="mt-1 text-sm">{r.response.body}</p>
+                    </div>
+                  )}
                 </div>
               ))}
+              {!(assetReviews[asset.id] ?? []).length && (
+                <div className="text-center text-sm text-ink/50 py-6">No reviews yet — be the first.</div>
+              )}
             </div>
           </HudCard>
         </div>
