@@ -311,7 +311,7 @@ function PaymentModal({ asset, onClose }: { asset: Asset; onClose: () => void })
             {/* Breakdown */}
             <div className="p-4 rounded-2xl bg-muted/40 border-2 border-ink/20 space-y-1.5 font-mono text-sm">
               <Row label="License price" value={`${price.toLocaleString()} PX`} />
-              <Row label="Creator royalty" value={`${creatorPayout.toLocaleString()} PX`} sub="95% to @{asset.artist}" muted />
+              <Row label="Creator royalty" value={`${creatorPayout.toLocaleString()} PX`} sub={`95% to ${asset.artist}`} muted />
               <Row label="Platform fee" value={`${platformFee.toLocaleString()} PX`} muted />
               <div className="border-t-2 border-ink/20 pt-2 mt-2 flex justify-between font-bold">
                 <span>Total</span>
