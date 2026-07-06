@@ -25,6 +25,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen w-full flex text-foreground">
+      <CommandPalette />
       {/* Left icon rail */}
       <aside className="w-20 shrink-0 border-r-2 border-ink bg-white flex flex-col items-center py-4 gap-3 sticky top-0 h-screen z-30">
         <Link to="/create" className="mb-2 group" aria-label="Pixels Studio home">
