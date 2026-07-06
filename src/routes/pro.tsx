@@ -5,7 +5,7 @@ import { Check, Minus, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/pro")({
   head: () => ({
-    meta: [{ title: "Upgrade to Pro — NeoLab Studio" }, { name: "description", content: "One-time NFT mint. 80/20 split. Custom asset uploads. Scripting." }],
+    meta: [{ title: "Upgrade to Pro — Pixels Studio" }, { name: "description", content: "One-time NFT mint. 80/20 split. Custom asset uploads. Scripting." }],
   }),
   component: () => (
     <AppShell>
@@ -45,13 +45,13 @@ function ProPage() {
           <div className="flex items-center justify-between">
             <div>
               <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Current plan</div>
-              <div className="text-2xl font-bold mt-1">NeoLab Free</div>
+              <div className="text-2xl font-bold mt-1">Pixels Studio Free</div>
             </div>
             <Chip>Included</Chip>
           </div>
           <div className="mt-6">
             <div className="font-mono text-4xl">0 <span className="text-sm text-muted-foreground">PX / forever</span></div>
-            <div className="text-xs text-muted-foreground mt-1">Ships with every CyberVerse account.</div>
+            <div className="text-xs text-muted-foreground mt-1">Ships with every Pixels account.</div>
           </div>
           <ul className="mt-6 space-y-2 text-sm">
             {[
@@ -75,7 +75,7 @@ function ProPage() {
           <div className="flex items-center justify-between">
             <div>
               <div className="text-[10px] font-mono uppercase tracking-widest neon-text-magenta">// Recommended</div>
-              <div className="text-2xl font-bold mt-1">NeoLab Pro</div>
+              <div className="text-2xl font-bold mt-1">Pixels Studio Pro</div>
             </div>
             <Chip tone="magenta"><Sparkles className="w-3 h-3" /> NFT · Transferable</Chip>
           </div>
@@ -139,7 +139,7 @@ function ProPage() {
       </div>
 
       <div className="mt-8 text-center text-xs text-muted-foreground max-w-2xl mx-auto">
-        NeoLab Pro is a one-time on-chain mint. Total supply capped at 25,000. If NeoLab ever shuts down, your mint proves your projects are yours.
+        Pixels Studio Pro is a one-time on-chain mint. Total supply capped at 25,000. If Pixels Studio ever shuts down, your mint proves your projects are yours.
       </div>
     </div>
   );

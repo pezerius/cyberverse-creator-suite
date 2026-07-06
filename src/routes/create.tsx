@@ -7,7 +7,7 @@ import { useState } from "react";
 export const Route = createFileRoute("/create")({
   head: () => ({
     meta: [
-      { title: "Create — NeoLab Studio" },
+      { title: "Create — Pixels Studio" },
       { name: "description", content: "Make a game in hours, not months. Templates, AI copilot, and a built-in audience." },
     ],
   }),
@@ -52,9 +52,9 @@ function CreatePage() {
       <div className="relative hud-panel p-10 md:p-14 overflow-hidden">
         <div className="absolute inset-0 grid-canvas opacity-40 -z-10" />
         <div className="absolute -top-20 -right-20 w-[400px] h-[400px] bg-primary/25 blur-3xl -z-10" />
-        <div className="text-[10px] font-mono uppercase tracking-[0.3em] neon-text-cyan mb-3">// NeoLab Studio · Welcome</div>
+        <div className="text-[10px] font-mono uppercase tracking-[0.3em] neon-text-cyan mb-3">// Pixels Studio · Welcome</div>
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight max-w-3xl">
-          Ship a game your <span className="neon-text-magenta">CyberVerse crew</span> is playing tonight.
+          Ship a game your <span className="neon-text-magenta">Pixels crew</span> is playing tonight.
         </h1>
         <p className="mt-5 text-lg text-muted-foreground max-w-2xl">
           Pick a template, paint a level, wire a rule, publish to Party Hub. No engine. No install. No revenue share that
@@ -93,7 +93,7 @@ function CreatePage() {
           tone="cyan"
           icon={<Share2 className="w-5 h-5 neon-text-cyan" />}
           title="Party Hub is your storefront."
-          body="Every CyberVerse player already lives in Party Hub. Publish once, get discovered in Featured, Trending, and New Releases."
+          body="Every Pixels player already lives in Party Hub. Publish once, get discovered in Featured, Trending, and New Releases."
           bullets={["4.2M weekly active players", "Pro Rotation featured slots", "Referral rewards for early streamers"]}
         />
         <PitchPanel
@@ -101,7 +101,7 @@ function CreatePage() {
           tone="amber"
           icon={<Coins className="w-5 h-5 neon-text-amber" />}
           title="60/40, in your favor."
-          body="Every PIXEL spent on your game settles on-chain. Withdraw to your CyberVerse wallet after a 7-day review window."
+          body="Every PIXEL spent on your game settles on-chain. Withdraw to your Pixels wallet after a 7-day review window."
           bullets={["Pro plan bumps you to 80/20", "One-time NFT mint per project", "No hidden platform fees"]}
         />
       </div>
@@ -111,7 +111,7 @@ function CreatePage() {
         <SectionHeader
           eyebrow="// AI Copilot · Beta"
           title="Describe it. We'll scaffold it."
-          sub="Rough idea in plain language. NeoLab picks a template, places entities, wires basic logic, and hands you an editable draft."
+          sub="Rough idea in plain language. Pixels Studio picks a template, places entities, wires basic logic, and hands you an editable draft."
           right={<Chip tone="violet">Beta · 400 PIXELS / gen</Chip>}
         />
         <div className="grid lg:grid-cols-5 gap-5">

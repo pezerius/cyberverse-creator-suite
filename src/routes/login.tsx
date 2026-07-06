@@ -4,8 +4,8 @@ import { ArrowRight, ShieldCheck } from "lucide-react";
 export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
-      { title: "Log in — NeoLab Studio" },
-      { name: "description", content: "Continue with your CyberVerse account. No new signup." },
+      { title: "Log in — Pixels Studio" },
+      { name: "description", content: "Continue with your Pixels account. No new signup." },
     ],
   }),
   component: LoginPage,
@@ -25,8 +25,8 @@ function LoginPage() {
             <span className="font-mono font-bold text-primary text-sm">NL</span>
           </div>
           <div>
-            <div className="font-bold tracking-tight">NeoLab Studio</div>
-            <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground">Inside CyberVerse</div>
+            <div className="font-bold tracking-tight">Pixels Studio</div>
+            <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground">Inside Pixels</div>
           </div>
         </div>
 
@@ -34,7 +34,7 @@ function LoginPage() {
           <div className="text-[10px] font-mono uppercase tracking-[0.3em] neon-text-cyan mb-2">// Authenticate</div>
           <h1 className="text-2xl font-bold tracking-tight">Jack in to the Studio.</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            NeoLab Studio ships as part of CyberVerse. Bring the account you already play with — inventory, PIXELS, and reputation come with you.
+            Pixels Studio ships as part of Pixels. Bring the account you already play with — inventory, PIXELS, and reputation come with you.
           </p>
 
           <Link
@@ -43,7 +43,7 @@ function LoginPage() {
           >
             <span className="flex items-center gap-3">
               <span className="w-6 h-6 clip-hud-sm bg-primary-foreground/20 flex items-center justify-center text-xs">CV</span>
-              Continue with CyberVerse
+              Continue with Pixels
             </span>
             <ArrowRight className="w-4 h-4" />
           </Link>
@@ -52,7 +52,7 @@ function LoginPage() {
             <ShieldCheck className="w-4 h-4 neon-text-cyan mt-0.5 shrink-0" />
             <p className="text-xs text-muted-foreground">
               <span className="neon-text-cyan font-mono uppercase tracking-widest text-[10px]">No new signup.</span>{" "}
-              No email, no password, no wallet setup. Your CyberVerse identity is the only key.
+              No email, no password, no wallet setup. Your Pixels identity is the only key.
             </p>
           </div>
 
@@ -69,7 +69,7 @@ function LoginPage() {
         </div>
 
         <p className="mt-6 text-center text-[10px] font-mono uppercase tracking-widest text-muted-foreground/70">
-          By continuing you agree to the Creator Code · Node SHARD-7
+          By continuing you agree to the Creator Code · Node REALM-7
         </p>
       </div>
     </div>

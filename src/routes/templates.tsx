@@ -6,7 +6,7 @@ import { Lock, Clock, ArrowRight } from "lucide-react";
 export const Route = createFileRoute("/templates")({
   head: () => ({
     meta: [
-      { title: "Templates — NeoLab Studio" },
+      { title: "Templates — Pixels Studio" },
       { name: "description", content: "Snake, Tag, Racing, Shooter, Hangout, Blank Canvas. Pick a start point." },
     ],
   }),

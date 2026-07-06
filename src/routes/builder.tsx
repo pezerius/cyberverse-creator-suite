@@ -12,8 +12,8 @@ import { useState } from "react";
 export const Route = createFileRoute("/builder")({
   head: () => ({
     meta: [
-      { title: "Editor — NeoLab Studio" },
-      { name: "description", content: "The NeoLab editor: paint tiles, place entities, wire logic, publish." },
+      { title: "Editor — Pixels Studio" },
+      { name: "description", content: "The Pixels Studio editor: paint tiles, place entities, wire logic, publish." },
     ],
   }),
   component: () => (

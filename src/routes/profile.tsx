@@ -5,7 +5,7 @@ import { CheckCircle2, Star, Users, Trophy } from "lucide-react";
 
 export const Route = createFileRoute("/profile")({
   head: () => ({
-    meta: [{ title: "@nx — Creator Profile" }, { name: "description", content: "NeoLab Studio creator profile." }],
+    meta: [{ title: "@nx — Creator Profile" }, { name: "description", content: "Pixels Studio creator profile." }],
   }),
   component: () => (
     <AppShell>
@@ -40,7 +40,7 @@ function ProfilePage() {
             Making rooftop games in a rain-soaked city. Prev: art on the Sector-9 heist mission. Currently obsessed with slow-motion tag mechanics.
           </p>
           <div className="mt-3 flex gap-2 flex-wrap">
-            <Chip>SHARD-7</Chip>
+            <Chip>REALM-7</Chip>
             <Chip>Joined 2085</Chip>
             <Chip>Speaks EN · JP</Chip>
           </div>
