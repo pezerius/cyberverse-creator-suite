@@ -59,7 +59,7 @@ function Page() {
           <div className="text-[10px] font-mono uppercase tracking-widest text-ink/60">// Realm-7 · {g.tags[0]}</div>
           <h1 className="text-3xl md:text-4xl font-black italic truncate" style={{ fontFamily: "var(--font-display)" }}>{g.title}</h1>
           <p className="mt-2 text-ink/70 max-w-2xl">{g.tagline}</p>
-          <div className="mt-3 flex flex-wrap gap-1.5">{g.tags.map((t) => <Chip key={t}>{t}</Chip>)}</div>
+          <div className="mt-3 flex flex-wrap gap-1.5">{g.tags.map((t: string) => <Chip key={t}>{t}</Chip>)}</div>
         </div>
         <div className="flex items-center gap-2 shrink-0">
           <button onClick={() => setWish(!wish)} className={`w-11 h-11 rounded-full border-2 border-ink shadow-[2px_2px_0_0_var(--ink)] flex items-center justify-center ${wish ? "bg-primary text-primary-foreground" : "bg-white"}`}>
@@ -83,7 +83,7 @@ function Page() {
       <section className="mb-8">
         <h2 className="text-xl font-black italic mb-3" style={{ fontFamily: "var(--font-display)" }}>Screenshots</h2>
         <div className="flex gap-3 overflow-x-auto pb-3 -mx-2 px-2 snap-x">
-          {g.screenshots.map((s, i) => (
+          {g.screenshots.map((s: any, i: number) => (
             <div key={i} className="w-72 shrink-0 snap-start rounded-2xl border-2 border-ink shadow-[3px_3px_0_0_var(--ink)] overflow-hidden">
               <div className={`h-40 bg-gradient-to-br ${s.grad} flex items-center justify-center text-5xl`}>{s.emoji}</div>
               <div className="p-2 text-[11px] font-mono text-ink/60 border-t-2 border-ink/10 truncate">{s.caption}</div>
@@ -157,7 +157,7 @@ function Page() {
             <div className="rounded-2xl border-2 border-ink bg-white shadow-[3px_3px_0_0_var(--ink)] p-4">
               <div className="text-[10px] font-mono uppercase tracking-widest text-ink/60 mb-3 flex items-center gap-1"><Award className="w-3 h-3" /> Revenue splits</div>
               <div className="space-y-3">
-                {g.splits.map((s) => (
+                {g.splits.map((s: any) => (
                   <div key={s.handle}>
                     <div className="flex items-center justify-between text-xs">
                       <Link to="/u/$handle" params={{ handle: s.handle }} className="font-bold hover:underline">@{s.handle}</Link>

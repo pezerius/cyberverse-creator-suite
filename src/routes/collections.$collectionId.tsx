@@ -27,7 +27,7 @@ export const Route = createFileRoute("/collections/$collectionId")({
 
 function Page() {
   const { collection: c } = Route.useLoaderData();
-  const assets = c.assetIds.map((id) => getAsset(id)).filter(Boolean);
+  const assets = c.assetIds.map((id: string) => getAsset(id)).filter(Boolean);
   const savings = c.originalPrice - c.price;
 
   return (
@@ -58,7 +58,7 @@ function Page() {
 
           <h2 className="text-xl font-black italic mb-3" style={{ fontFamily: "var(--font-display)" }}>What's inside</h2>
           <div className="space-y-3">
-            {assets.map((a) => a && (
+            {assets.map((a: any) => a && (
               <Link key={a.id} to="/marketplace/$assetId" params={{ assetId: a.id }}
                 className="flex items-center gap-4 p-3 rounded-2xl border-2 border-ink bg-white shadow-[3px_3px_0_0_var(--ink)] hover:translate-y-[-1px] transition">
                 <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${a.grad} border-2 border-ink flex items-center justify-center shrink-0`}><a.icon className="w-6 h-6 text-ink/70" /></div>

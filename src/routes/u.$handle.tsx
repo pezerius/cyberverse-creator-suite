@@ -57,7 +57,7 @@ function Page() {
                 <h1 className="text-2xl md:text-3xl font-black italic truncate" style={{ fontFamily: "var(--font-display)" }}>{c.name}</h1>
                 <div className="font-mono text-sm text-ink/60">@{c.handle}</div>
                 <div className="mt-2 flex flex-wrap gap-1.5">
-                  {c.badges.map((b) => <Chip key={b} tone="cyan"><Award className="w-3 h-3" /> {b}</Chip>)}
+                  {c.badges.map((b: string) => <Chip key={b} tone="cyan"><Award className="w-3 h-3" /> {b}</Chip>)}
                 </div>
               </div>
             </div>
@@ -75,7 +75,7 @@ function Page() {
           <div className="mt-4 flex flex-wrap gap-4 text-[11px] font-mono uppercase tracking-widest text-ink/60">
             <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" /> Joined {c.joined}</span>
             <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5" /> {c.region}</span>
-            {c.socials?.map((s) => <span key={s.label} className="flex items-center gap-1"><ExternalLink className="w-3.5 h-3.5" /> {s.url}</span>)}
+            {c.socials?.map((s: any) => <span key={s.label} className="flex items-center gap-1"><ExternalLink className="w-3.5 h-3.5" /> {s.url}</span>)}
           </div>
         </div>
       </div>
@@ -95,7 +95,7 @@ function Page() {
           <EmptyState emoji="🎮" title="No games shipped yet." sub="This creator focuses on assets." />
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {c.games.map((slug) => {
+            {c.games.map((slug: string) => {
               const g = getGame(slug); if (!g) return null;
               return (
                 <Link key={slug} to="/g/$slug" params={{ slug }} className="rounded-2xl border-2 border-ink bg-white shadow-[3px_3px_0_0_var(--ink)] overflow-hidden hover:translate-y-[-2px] transition">
@@ -121,7 +121,7 @@ function Page() {
           <EmptyState emoji="📦" title="No assets listed." />
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {c.assets.map((id) => {
+            {c.assets.map((id: string) => {
               const a = getAsset(id); if (!a) return null;
               return (
                 <Link key={id} to="/marketplace/$assetId" params={{ assetId: id }} className="rounded-2xl border-2 border-ink bg-white shadow-[3px_3px_0_0_var(--ink)] overflow-hidden hover:translate-y-[-2px] transition">
