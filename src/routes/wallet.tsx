@@ -243,8 +243,8 @@ function PayoutModal({ onClose }: { onClose: () => void }) {
 function TopupModal({ onClose }: { onClose: () => void }) {
   const [preset, setPreset] = useState(5000);
   const [step, setStep] = useState<"form" | "pending" | "done">("form");
-  const depositAddress = "0xPX7a...9c4E";
-  const network = "Pixels Chain · Mainnet";
+  const depositAddress = "ronin:0x7a3f...9c4E";
+  const network = "Ronin Network";
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/50 backdrop-blur-sm" onClick={onClose}>
       <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="w-full max-w-md bg-background border-2 border-ink rounded-3xl shadow-[6px_6px_0_0_var(--ink)] overflow-hidden" onClick={(e) => e.stopPropagation()}>
@@ -287,7 +287,7 @@ function TopupModal({ onClose }: { onClose: () => void }) {
 
             <div className="p-3 rounded-2xl bg-muted/40 border-2 border-ink/30 flex gap-2 text-[11px] font-mono text-ink/70">
               <Info className="w-3.5 h-3.5 mt-0.5 shrink-0" />
-              <span>Deposits credit after 3 confirmations (~30s). Sending from an exchange? Double-check the network.</span>
+              <span>Send $PIXEL on Ronin only. Deposits from Ethereum, BSC or exchanges using the wrong network will be lost. Credits after ~30s.</span>
             </div>
 
             <div className="grid grid-cols-2 gap-2">
