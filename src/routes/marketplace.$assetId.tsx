@@ -146,7 +146,7 @@ function AssetDetail() {
             {asset.tags && asset.tags.length > 0 && (
               <div className="mt-4 flex items-center flex-wrap gap-2">
                 <Tag className="w-3.5 h-3.5 text-ink/60" />
-                {asset.tags.map((t) => (
+                {asset.tags.map((t: string) => (
                   <span key={t} className="px-2.5 h-6 inline-flex items-center rounded-full bg-muted border-2 border-ink/20 font-mono text-[11px]">#{t}</span>
                 ))}
               </div>

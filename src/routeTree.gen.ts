@@ -21,6 +21,7 @@ import { Route as CreateRouteImport } from './routes/create'
 import { Route as BuilderRouteImport } from './routes/builder'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MarketplaceIndexRouteImport } from './routes/marketplace.index'
+import { Route as MarketplaceAssetIdRouteImport } from './routes/marketplace.$assetId'
 
 const TemplatesRoute = TemplatesRouteImport.update({
   id: '/templates',
@@ -82,6 +83,11 @@ const MarketplaceIndexRoute = MarketplaceIndexRouteImport.update({
   path: '/',
   getParentRoute: () => MarketplaceRoute,
 } as any)
+const MarketplaceAssetIdRoute = MarketplaceAssetIdRouteImport.update({
+  id: '/$assetId',
+  path: '/$assetId',
+  getParentRoute: () => MarketplaceRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -95,6 +101,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/templates': typeof TemplatesRoute
+  '/marketplace/$assetId': typeof MarketplaceAssetIdRoute
   '/marketplace/': typeof MarketplaceIndexRoute
 }
 export interface FileRoutesByTo {
@@ -108,6 +115,7 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/templates': typeof TemplatesRoute
+  '/marketplace/$assetId': typeof MarketplaceAssetIdRoute
   '/marketplace': typeof MarketplaceIndexRoute
 }
 export interface FileRoutesById {
@@ -123,6 +131,7 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/templates': typeof TemplatesRoute
+  '/marketplace/$assetId': typeof MarketplaceAssetIdRoute
   '/marketplace/': typeof MarketplaceIndexRoute
 }
 export interface FileRouteTypes {
@@ -139,6 +148,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sitemap.xml'
     | '/templates'
+    | '/marketplace/$assetId'
     | '/marketplace/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -152,6 +162,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sitemap.xml'
     | '/templates'
+    | '/marketplace/$assetId'
     | '/marketplace'
   id:
     | '__root__'
@@ -166,6 +177,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sitemap.xml'
     | '/templates'
+    | '/marketplace/$assetId'
     | '/marketplace/'
   fileRoutesById: FileRoutesById
 }
@@ -269,14 +281,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MarketplaceIndexRouteImport
       parentRoute: typeof MarketplaceRoute
     }
+    '/marketplace/$assetId': {
+      id: '/marketplace/$assetId'
+      path: '/$assetId'
+      fullPath: '/marketplace/$assetId'
+      preLoaderRoute: typeof MarketplaceAssetIdRouteImport
+      parentRoute: typeof MarketplaceRoute
+    }
   }
 }
 
 interface MarketplaceRouteChildren {
+  MarketplaceAssetIdRoute: typeof MarketplaceAssetIdRoute
   MarketplaceIndexRoute: typeof MarketplaceIndexRoute
 }
 
 const MarketplaceRouteChildren: MarketplaceRouteChildren = {
+  MarketplaceAssetIdRoute: MarketplaceAssetIdRoute,
   MarketplaceIndexRoute: MarketplaceIndexRoute,
 }
 
