@@ -169,7 +169,7 @@ function AssetDetail() {
           <HudCard>
             <div className="text-[10px] font-mono uppercase tracking-widest text-ink/60 mb-2">// Compatibility</div>
             <ul className="space-y-1.5">
-              {(asset.compatibility ?? []).map((c) => (
+              {(asset.compatibility ?? []).map((c: string) => (
                 <li key={c} className="flex items-center gap-2 text-sm"><Check className="w-4 h-4 text-[oklch(0.55_0.22_140)]" strokeWidth={3} /> {c}</li>
               ))}
             </ul>
