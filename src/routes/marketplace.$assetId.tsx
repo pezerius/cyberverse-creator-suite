@@ -1,8 +1,13 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { AppShell } from "@/components/AppShell";
-import { HudButton, HudCard, Chip, SectionHeader, Stat } from "@/components/hud";
-import { assets, getAsset, licenseTone, type License, type Asset } from "@/lib/marketplace-data";
-import { ArrowLeft, Star, Download, Heart, Share2, Flag, Package, Calendar, Ruler, FileArchive, Tag, Check, X, Wallet, CreditCard, Shield, MessageSquare, ThumbsUp } from "lucide-react";
+import { HudButton, HudCard, Chip, SectionHeader } from "@/components/hud";
+import { assets, getAsset, type Asset } from "@/lib/marketplace-data";
+import { assetReviews } from "@/lib/mock-reviews";
+import { assetVersions } from "@/lib/mock-versions";
+import { SpritePlayer } from "@/components/SpritePlayer";
+import { WaveformPlayer } from "@/components/WaveformPlayer";
+import { ReportButton } from "@/components/ReportButton";
+import { ArrowLeft, Star, Download, Heart, Share2, Package, Calendar, Ruler, FileArchive, Tag, Check, Wallet, Shield, MessageSquare, ThumbsUp, X, History } from "lucide-react";
 import { useState } from "react";
 
 export const Route = createFileRoute("/marketplace/$assetId")({
@@ -63,23 +68,34 @@ function AssetDetail() {
       <div className="grid lg:grid-cols-[1.4fr_1fr] gap-6 mb-8">
         {/* Preview */}
         <div className="bg-white border-2 border-ink rounded-3xl shadow-[4px_4px_0_0_var(--ink)] overflow-hidden">
-          <div className={`h-80 bg-gradient-to-br ${asset.grad} relative flex items-center justify-center border-b-2 border-ink`}>
-            <Icon className="w-24 h-24 text-ink/70" />
-            <div className="absolute top-4 left-4 flex gap-1 flex-wrap">
-              <Chip>{asset.type}</Chip>
-              {asset.featured && <Chip tone="amber">★ Featured</Chip>}
-              {asset.new && <Chip tone="green">New</Chip>}
-              {asset.free && <Chip tone="green">Free</Chip>}
+          {asset.type === "Sprites" ? (
+            <SpritePlayer grad={asset.grad} />
+          ) : asset.type === "SFX" ? (
+            <div className="p-4 space-y-3">
+              <WaveformPlayer label={`${asset.name.toLowerCase().replace(/\s+/g,"_")}_01.wav`} duration={2.4} seed={7} />
+              <WaveformPlayer label={`${asset.name.toLowerCase().replace(/\s+/g,"_")}_02.wav`} duration={1.8} seed={13} />
+              <WaveformPlayer label={`${asset.name.toLowerCase().replace(/\s+/g,"_")}_03.wav`} duration={3.1} seed={21} />
             </div>
-          </div>
-          {/* Thumbnail strip */}
-          <div className="p-3 flex gap-2 overflow-x-auto">
-            {[0,1,2,3].map((i) => (
-              <div key={i} className={`shrink-0 w-20 h-16 rounded-xl border-2 ${i === 0 ? "border-primary shadow-[2px_2px_0_0_var(--ink)]" : "border-ink/30"} bg-gradient-to-br ${asset.grad} flex items-center justify-center`}>
-                <Icon className="w-5 h-5 text-ink/70" />
+          ) : (
+            <>
+              <div className={`h-80 bg-gradient-to-br ${asset.grad} relative flex items-center justify-center border-b-2 border-ink`}>
+                <Icon className="w-24 h-24 text-ink/70" />
+                <div className="absolute top-4 left-4 flex gap-1 flex-wrap">
+                  <Chip>{asset.type}</Chip>
+                  {asset.featured && <Chip tone="amber">★ Featured</Chip>}
+                  {asset.new && <Chip tone="green">New</Chip>}
+                  {asset.free && <Chip tone="green">Free</Chip>}
+                </div>
               </div>
-            ))}
-          </div>
+              <div className="p-3 flex gap-2 overflow-x-auto">
+                {[0,1,2,3].map((i) => (
+                  <div key={i} className={`shrink-0 w-20 h-16 rounded-xl border-2 ${i === 0 ? "border-primary shadow-[2px_2px_0_0_var(--ink)]" : "border-ink/30"} bg-gradient-to-br ${asset.grad} flex items-center justify-center`}>
+                    <Icon className="w-5 h-5 text-ink/70" />
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </div>
 
         {/* Purchase panel */}
@@ -175,27 +191,64 @@ function AssetDetail() {
             </ul>
           </HudCard>
 
+          {/* Version history */}
+          <HudCard>
+            <div className="flex items-center gap-2 mb-3">
+              <History className="w-4 h-4" />
+              <div className="text-[10px] font-mono uppercase tracking-widest text-ink/60">// Version history</div>
+              <Chip tone="cyan" className="ml-auto">Auto-notify enabled</Chip>
+            </div>
+            <div className="space-y-3">
+              {(assetVersions[asset.id] ?? []).map((v) => (
+                <div key={v.version} className="border-l-2 border-primary pl-3 py-1">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="font-mono font-bold">{v.version}</span>
+                    <Chip tone={v.kind === "major" ? "magenta" : v.kind === "minor" ? "cyan" : "default"}>{v.kind}</Chip>
+                    <span className="text-[10px] font-mono text-ink/50">{v.date}</span>
+                    <span className="text-[10px] font-mono text-ink/50 ml-auto flex items-center gap-1"><Download className="w-3 h-3" /> {v.downloads}</span>
+                  </div>
+                  <ul className="mt-1.5 text-sm text-ink/80 space-y-1">
+                    {v.notes.map((n, i) => <li key={i} className="flex gap-2"><span className="text-primary">›</span>{n}</li>)}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <div className="mt-3 pt-3 border-t border-ink/10 text-[11px] font-mono text-ink/60">
+              License holders get an email + in-app notification on every version bump.
+            </div>
+          </HudCard>
+
           {/* Reviews */}
           <HudCard>
             <div className="flex items-center justify-between mb-4">
-              <div className="text-[10px] font-mono uppercase tracking-widest text-ink/60">// Reviews (3)</div>
-              <HudButton variant="secondary" className="h-8 px-3"><MessageSquare className="w-3.5 h-3.5" /> Write one</HudButton>
+              <div className="text-[10px] font-mono uppercase tracking-widest text-ink/60">// Reviews ({(assetReviews[asset.id] ?? []).length})</div>
+              <HudButton variant="secondary" size="sm"><MessageSquare className="w-3.5 h-3.5" /> Write one</HudButton>
             </div>
             <div className="space-y-4">
-              {sampleReviews.map((r) => (
-                <div key={r.by} className="border-t-2 border-ink/10 pt-4 first:border-0 first:pt-0">
-                  <div className="flex items-center gap-2 text-sm">
-                    <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground border-2 border-ink flex items-center justify-center font-mono text-[10px]">{r.by.slice(1,3).toUpperCase()}</div>
-                    <div className="font-bold">{r.by}</div>
+              {(assetReviews[asset.id] ?? []).map((r) => (
+                <div key={r.id} className="border-t-2 border-ink/10 pt-4 first:border-0 first:pt-0">
+                  <div className="flex items-center gap-2 text-sm flex-wrap">
+                    <Link to="/u/$handle" params={{ handle: r.author }} className="w-8 h-8 rounded-full bg-primary text-primary-foreground border-2 border-ink flex items-center justify-center font-mono text-[10px]">{r.avatar}</Link>
+                    <Link to="/u/$handle" params={{ handle: r.author }} className="font-bold hover:underline">@{r.author}</Link>
+                    {r.verified && <Chip tone="green"><Check className="w-3 h-3" /> Verified</Chip>}
                     <div className="flex items-center gap-0.5 text-[oklch(0.75_0.20_50)]">
-                      {[...Array(r.stars)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
+                      {[...Array(r.rating)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
                     </div>
-                    <div className="ml-auto text-[11px] font-mono text-ink/50">{r.when}</div>
+                    <div className="ml-auto text-[11px] font-mono text-ink/50">{r.ts}</div>
                   </div>
                   <p className="mt-2 text-sm text-ink/80">{r.body}</p>
                   <button className="mt-2 inline-flex items-center gap-1 text-[11px] font-mono text-ink/60 hover:text-ink"><ThumbsUp className="w-3 h-3" /> Helpful ({r.helpful})</button>
+                  {r.response && (
+                    <div className="mt-3 ml-4 pl-3 border-l-2 border-primary bg-primary/5 rounded-r-lg p-3">
+                      <div className="text-[10px] font-mono uppercase tracking-widest text-primary font-bold">{r.response.author} · {r.response.ts}</div>
+                      <p className="mt-1 text-sm">{r.response.body}</p>
+                    </div>
+                  )}
                 </div>
               ))}
+              {!(assetReviews[asset.id] ?? []).length && (
+                <div className="text-center text-sm text-ink/50 py-6">No reviews yet — be the first.</div>
+              )}
             </div>
           </HudCard>
         </div>
@@ -225,7 +278,7 @@ function AssetDetail() {
               <li className="flex items-start gap-2"><Shield className="w-4 h-4 text-primary shrink-0 mt-0.5" /><span>Scanned for malware & prohibited content on upload.</span></li>
               <li className="flex items-start gap-2"><Check className="w-4 h-4 text-[oklch(0.55_0.22_140)] shrink-0 mt-0.5" strokeWidth={3} /><span>Copyright cleared — creator holds full IP rights.</span></li>
             </ul>
-            <button className="mt-4 inline-flex items-center gap-1 text-[11px] font-mono text-ink/60 hover:text-ink"><Flag className="w-3 h-3" /> Report this asset</button>
+            <div className="mt-4"><ReportButton targetLabel={asset.name} size="sm" /></div>
           </HudCard>
         </div>
       </div>
@@ -333,8 +386,3 @@ function SimpleCheckout({ asset, onClose }: { asset: Asset; onClose: () => void 
   );
 }
 
-const sampleReviews = [
-  { by: "@drift.dev", stars: 5, when: "3 days ago", helpful: 12, body: "Slotted right into my project. Auto-tiling rules just work, and the artist replied to my Discord DM within an hour when I had a question." },
-  { by: "@holo.studio", stars: 5, when: "2 weeks ago", helpful: 8, body: "Best-in-class. Worth every $PIXEL — used it in two shipped games so far under the All My Games tier." },
-  { by: "@bytebrawl", stars: 4, when: "1 month ago", helpful: 3, body: "Great pack, wish there were a few more variants for the neon-signage tiles. Docked one star for that." },
-];

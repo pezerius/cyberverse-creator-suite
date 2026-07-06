@@ -83,10 +83,12 @@ export function Chip({
 export function HudButton({
   children,
   variant = "primary",
+  size = "md",
   className = "",
   ...props
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: "primary" | "secondary" | "ghost" | "danger" | "success" | "cyan" | "amber";
+  size?: "sm" | "md" | "lg";
 }) {
   const styles: Record<string, string> = {
     primary: "bg-primary text-primary-foreground border-2 border-ink shadow-[3px_3px_0_0_var(--ink)] hover:translate-y-[-1px] hover:shadow-[4px_4px_0_0_var(--ink)]",
@@ -97,10 +99,15 @@ export function HudButton({
     cyan: "bg-[oklch(0.85_0.12_220)] text-ink border-2 border-ink shadow-[3px_3px_0_0_var(--ink)]",
     amber: "bg-[oklch(0.75_0.20_50)] text-ink border-2 border-ink shadow-[3px_3px_0_0_var(--ink)]",
   };
+  const sizes: Record<string, string> = {
+    sm: "h-8 px-3 text-[10px]",
+    md: "h-10 px-5 text-xs",
+    lg: "h-12 px-6 text-sm",
+  };
   return (
     <button
       {...props}
-      className={`inline-flex items-center gap-2 h-10 px-5 rounded-full font-mono text-xs uppercase tracking-widest font-bold transition-transform ${styles[variant]} ${className}`}
+      className={`inline-flex items-center gap-2 rounded-full font-mono uppercase tracking-widest font-bold transition-transform ${sizes[size]} ${styles[variant]} ${className}`}
     >
       {children}
     </button>
@@ -133,11 +140,13 @@ export function Stat({
   label,
   value,
   delta,
+  sub,
   tone = "default",
 }: {
   label: string;
   value: string;
   delta?: string;
+  sub?: string;
   tone?: "default" | "magenta" | "cyan" | "amber" | "green";
 }) {
   const colors: Record<string, string> = {
@@ -158,9 +167,8 @@ export function Stat({
     <div className={`border-2 border-ink rounded-2xl shadow-[3px_3px_0_0_var(--ink)] p-4 ${bgs[tone]}`}>
       <div className="text-[10px] font-mono uppercase tracking-widest text-ink/60">{label}</div>
       <div className={`mt-2 font-display italic font-black text-3xl ${colors[tone]}`} style={{ fontFamily: "var(--font-display)" }}>{value}</div>
-      {delta && (
-        <div className="mt-1 text-[10px] font-mono text-[oklch(0.45_0.20_140)] font-bold">▲ {delta}</div>
-      )}
+      {delta && <div className="mt-1 text-[10px] font-mono text-[oklch(0.45_0.20_140)] font-bold">▲ {delta}</div>}
+      {sub && <div className="mt-1 text-[10px] font-mono text-ink/50">{sub}</div>}
     </div>
   );
 }
