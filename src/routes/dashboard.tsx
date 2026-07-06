@@ -21,12 +21,12 @@ const statusTone: Record<Status, "violet" | "amber" | "green" | "red"> = {
   Draft: "violet", "In Review": "amber", Live: "green", Rejected: "red",
 };
 
-const projects: { name: string; status: Status; plays: string; revenue: string; grad: string; emoji: string }[] = [
-  { name: "Rooftop Tag Arena", status: "Live", plays: "48,120", revenue: "12,480 PX", grad: "from-primary/40 to-[oklch(0.72_0.18_290)]/30", emoji: "🌃" },
-  { name: "Neon Snake++", status: "Live", plays: "231,004", revenue: "84,200 PX", grad: "from-accent/60 to-[oklch(0.85_0.10_180)]/30", emoji: "🐍" },
+const projects: { name: string; slug?: string; status: Status; plays: string; revenue: string; grad: string; emoji: string }[] = [
+  { name: "Rooftop Tag Arena", slug: "blade-runners-4884", status: "Live", plays: "48,120", revenue: "12,480 PX", grad: "from-primary/40 to-[oklch(0.72_0.18_290)]/30", emoji: "🌃" },
+  { name: "Neon Snake++", slug: "neon-snake", status: "Live", plays: "231,004", revenue: "84,200 PX", grad: "from-accent/60 to-[oklch(0.85_0.10_180)]/30", emoji: "🐍" },
   { name: "Speed Loop 07", status: "In Review", plays: "—", revenue: "—", grad: "from-[oklch(0.75_0.20_50)]/60 to-primary/20", emoji: "🏁" },
   { name: "Karaoke Bar (Hangout)", status: "Draft", plays: "—", revenue: "—", grad: "from-[oklch(0.72_0.18_290)]/50 to-primary/20", emoji: "🎤" },
-  { name: "Grid Chess", status: "Rejected", plays: "—", revenue: "—", grad: "from-destructive/30 to-muted", emoji: "♛" },
+  { name: "Grid Chess", slug: "grid-duel", status: "Rejected", plays: "—", revenue: "—", grad: "from-destructive/30 to-muted", emoji: "♛" },
 ];
 
 // 30-day series
@@ -99,19 +99,29 @@ function OverviewPanel() {
   return (
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
       {projects.map((p) => (
-        <Link key={p.name} to="/builder" className="bg-white border-2 border-ink rounded-3xl shadow-[4px_4px_0_0_var(--ink)] overflow-hidden group hover:translate-y-[-2px] transition-transform">
-          <div className={`h-32 bg-gradient-to-br ${p.grad} relative flex items-center justify-center border-b-2 border-ink`}>
-            <div className="text-5xl">{p.emoji}</div>
-            <div className="absolute top-2 right-2"><Chip tone={statusTone[p.status]}>{p.status}</Chip></div>
-          </div>
+        <div key={p.name} className="bg-white border-2 border-ink rounded-3xl shadow-[4px_4px_0_0_var(--ink)] overflow-hidden group hover:translate-y-[-2px] transition-transform">
+          <Link to="/builder" className="block">
+            <div className={`h-32 bg-gradient-to-br ${p.grad} relative flex items-center justify-center border-b-2 border-ink`}>
+              <div className="text-5xl">{p.emoji}</div>
+              <div className="absolute top-2 right-2"><Chip tone={statusTone[p.status]}>{p.status}</Chip></div>
+            </div>
+          </Link>
           <div className="p-4">
             <div className="font-bold text-lg italic" style={{ fontFamily: "var(--font-display)" }}>{p.name}</div>
             <div className="mt-2 flex items-center justify-between font-mono text-xs">
               <span className="text-ink/60">{p.plays} plays</span>
               <span className="text-[oklch(0.55_0.22_45)] font-bold">{p.revenue}</span>
             </div>
+            <div className="mt-3 flex items-center gap-2">
+              <Link to="/builder" className="flex-1"><HudButton size="sm" variant="ghost" className="w-full">Open editor</HudButton></Link>
+              {p.slug ? (
+                <Link to="/manage/$kind/$id" params={{ kind: "game", id: p.slug }}><HudButton size="sm" variant="secondary">Manage</HudButton></Link>
+              ) : (
+                <HudButton size="sm" variant="secondary" disabled>Manage</HudButton>
+              )}
+            </div>
           </div>
-        </Link>
+        </div>
       ))}
     </div>
   );
