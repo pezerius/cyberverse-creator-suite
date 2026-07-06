@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
-    meta: [{ title: "My Projects — NeoLab Studio" }, { name: "description", content: "Your NeoLab projects, KPIs, and payouts." }],
+    meta: [{ title: "My Projects — Pixels Studio" }, { name: "description", content: "Your Pixels Studio projects, KPIs, and payouts." }],
   }),
   component: () => (
     <AppShell>

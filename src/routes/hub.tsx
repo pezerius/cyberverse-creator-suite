@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export const Route = createFileRoute("/hub")({
   head: () => ({
-    meta: [{ title: "Party Hub — NeoLab Studio" }, { name: "description", content: "Discover games built with NeoLab Studio." }],
+    meta: [{ title: "Party Hub — Pixels Studio" }, { name: "description", content: "Discover games built with Pixels Studio." }],
   }),
   component: () => (
     <AppShell>
@@ -41,9 +41,9 @@ function HubPage() {
   return (
     <div className="px-6 py-10 max-w-7xl mx-auto">
       <SectionHeader
-        eyebrow="// Party Hub · SHARD-7"
+        eyebrow="// Party Hub · REALM-7"
         title="Games your crew is playing."
-        sub="Every listing here was built in NeoLab. Buy in, tip creators, jump in with friends."
+        sub="Every listing here was built in Pixels Studio. Buy in, tip creators, jump in with friends."
       />
 
       <Row title="Featured" tag="Pro Rotation" items={rowFeatured} onBuy={setBuying} />
@@ -136,13 +136,13 @@ function PurchaseSheet({ listing, onClose }: { listing: Listing; onClose: () => 
             <div className="mt-4 p-3 clip-hud-sm bg-primary/10 border border-primary/40">
               <div className="text-xs">
                 <span className="neon-text-magenta font-mono uppercase tracking-widest text-[10px]">Where it goes:</span>{" "}
-                Most of this goes to the creator — <span className="font-mono neon-text-amber">{creatorCut} PIXELS (60%)</span>. NeoLab keeps 40% to run the shard.
+                Most of this goes to the creator — <span className="font-mono neon-text-amber">{creatorCut} PIXELS (60%)</span>. Pixels Studio keeps 40% to run the shard.
               </div>
             </div>
           )}
 
           <div className="mt-3 text-[11px] text-muted-foreground">
-            Refunds within 24h if you played less than 15 minutes. All sales settle on-chain — the receipt lives in your CyberVerse wallet.
+            Refunds within 24h if you played less than 15 minutes. All sales settle on-chain — the receipt lives in your Pixels wallet.
           </div>
 
           <div className="mt-6 flex items-center gap-3 justify-end">

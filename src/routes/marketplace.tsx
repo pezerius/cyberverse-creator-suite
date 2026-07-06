@@ -5,7 +5,7 @@ import { Music2, Palette, Grid3x3, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/marketplace")({
   head: () => ({
-    meta: [{ title: "Asset Marketplace — NeoLab Studio" }, { name: "description", content: "Creator-to-creator marketplace for sprites, SFX, and tilesets." }],
+    meta: [{ title: "Asset Marketplace — Pixels Studio" }, { name: "description", content: "Creator-to-creator marketplace for sprites, SFX, and tilesets." }],
   }),
   component: () => (
     <AppShell>
@@ -43,7 +43,7 @@ function MarketPage() {
         <div className="flex-1">
           <div className="text-[10px] font-mono uppercase tracking-widest neon-text-cyan">// UGC Asset Marketplace</div>
           <div className="mt-1 text-base">
-            Creators selling to creators. Every sprite, sound, and tileset here is uploaded by another NeoLab creator — they get paid every time you license their work.
+            Creators selling to creators. Every sprite, sound, and tileset here is uploaded by another Pixels Studio creator — they get paid every time you license their work.
           </div>
         </div>
         <HudButton variant="cyan">List an asset</HudButton>
