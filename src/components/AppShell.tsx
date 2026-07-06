@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Gamepad2, Hammer, Users, Store, User, Coins, Settings, Menu, X, Activity, Heart, Shield, Package } from "lucide-react";
+import { Gamepad2, Hammer, Users, Store, User, Coins, Settings, Menu, X, Activity, Heart, Shield, Package, LayoutDashboard, Sparkles } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { CommandPalette, CommandKButton } from "@/components/CommandPalette";
 import { NotificationsBell } from "@/components/NotificationsBell";
@@ -10,12 +10,14 @@ type NavItem = { to: string; icon: typeof Gamepad2; label: string; disabled?: bo
 const navItems: NavItem[] = [
   { to: "/play", icon: Gamepad2, label: "Play", disabled: true, tip: "CyberVerse core game" },
   { to: "/create", icon: Hammer, label: "Create" },
+  { to: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
   { to: "/hub", icon: Users, label: "Party Hub" },
   { to: "/marketplace", icon: Store, label: "Marketplace" },
   { to: "/feed", icon: Activity, label: "Feed" },
   { to: "/inventory", icon: Package, label: "Inventory" },
   { to: "/wishlist", icon: Heart, label: "Wishlist" },
   { to: "/profile", icon: User, label: "Profile" },
+  { to: "/pro", icon: Sparkles, label: "Upgrade" },
   { to: "/admin", icon: Shield, label: "Admin" },
 ];
 
@@ -25,7 +27,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   const isActive = (item: NavItem) => {
     if (item.disabled) return false;
-    if (item.to === "/create") return pathname === "/create" || pathname === "/templates" || pathname.startsWith("/builder") || pathname.startsWith("/dashboard");
+    if (item.to === "/create") return pathname === "/create" || pathname === "/templates" || pathname.startsWith("/builder");
     if (item.to === "/marketplace") return pathname.startsWith("/marketplace") || pathname.startsWith("/collections");
     if (item.to === "/admin") return pathname.startsWith("/admin") || pathname.startsWith("/moderation");
     return pathname.startsWith(item.to);
