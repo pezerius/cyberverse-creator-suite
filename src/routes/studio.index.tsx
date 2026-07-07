@@ -60,7 +60,7 @@ function StudioNav() {
           <Link to="/" className="hidden sm:inline-flex items-center gap-1.5 h-10 px-4 rounded-full text-xs font-mono uppercase tracking-widest text-background/60 hover:text-background border-2 border-transparent hover:border-background/30">
             Pixels Hub <ArrowRight className="w-3.5 h-3.5" />
           </Link>
-          <Link to="/login" className="hidden sm:inline-flex items-center h-10 px-4 rounded-full text-xs font-mono uppercase tracking-widest font-bold text-background hover:bg-background/10 border-2 border-transparent">Log in</Link>
+          <Link to="/login" search={{ mode: "studio" }} className="hidden sm:inline-flex items-center h-10 px-4 rounded-full text-xs font-mono uppercase tracking-widest font-bold text-background hover:bg-background/10 border-2 border-transparent">Log in</Link>
           <Link to="/studio/create" className="inline-flex items-center gap-2 h-10 px-5 rounded-full bg-accent text-ink border-2 border-background shadow-[3px_3px_0_0_var(--background)] text-sm font-mono uppercase tracking-widest font-bold hover:translate-y-[-1px] transition-transform">
             Open Studio <ArrowRight className="w-4 h-4" />
           </Link>
