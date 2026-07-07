@@ -476,7 +476,7 @@ function StudioFooter() {
         {[
           { title: "Product", links: [["Workspace", "#workspace"], ["Tools", "#tools"], ["Earnings", "#earnings"], ["FAQ", "#faq"]] },
           { title: "Creators", links: [["Templates", "/studio/templates"], ["Marketplace", "/marketplace"], ["Docs", "/legal"], ["Creator agreement", "/legal/creator-agreement"]] },
-          { title: "Pixels", links: [["Play now", "/"], ["Party Hub", "/hub"], ["Wallet", "/wallet"], ["Log in", "/login"]] },
+          { title: "Pixels", links: [["Play now", "/"], ["Party Hub", "/hub"], ["Wallet", "/wallet"], ["Log in", "/login?mode=studio"]] },
         ].map((col) => (
           <div key={col.title}>
             <div className="text-[10px] font-mono uppercase tracking-widest text-background/50 mb-3">{col.title}</div>
