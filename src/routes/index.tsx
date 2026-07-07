@@ -294,7 +294,7 @@ function SkinDrops() {
           <p className="mt-4 text-ink/70 leading-relaxed">
             Playable UGC — skins, hats, kicks, emotes, trails — bought once, used everywhere in the Pixels world. Everything you buy is yours, not licensed to you.
           </p>
-          <Link to="/shop" className="mt-6 inline-flex items-center gap-2 h-12 px-6 rounded-full bg-primary text-primary-foreground border-2 border-ink shadow-[3px_3px_0_0_var(--ink)] text-sm font-mono uppercase tracking-widest font-bold hover:translate-y-[-2px] transition-transform">
+          <Link to="/marketplace" className="mt-6 inline-flex items-center gap-2 h-12 px-6 rounded-full bg-primary text-primary-foreground border-2 border-ink shadow-[3px_3px_0_0_var(--ink)] text-sm font-mono uppercase tracking-widest font-bold hover:translate-y-[-2px] transition-transform">
             Open the Shop <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
