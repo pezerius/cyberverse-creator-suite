@@ -7,7 +7,7 @@ import { assets, licenseTone, type Asset } from "@/lib/marketplace-data";
 import { gamesList } from "@/lib/mock-games";
 import { Gamepad2, Package, Hammer, Download, Play, ExternalLink, Search, Filter, Star, Clock, HardDrive } from "lucide-react";
 
-export const Route = createFileRoute("/inventory")({
+export const Route = createFileRoute("/studio/inventory")({
   head: () => ({
     meta: [
       { title: "Inventory — Pixels Studio" },
@@ -210,7 +210,7 @@ function AssetRow({ asset, owned }: { asset: Asset; owned: OwnedAsset }) {
 
 function UGCTab({ query }: { query: string }) {
   const rows = myUGC.filter((u) => u.name.toLowerCase().includes(query.toLowerCase()));
-  if (rows.length === 0) return <EmptyState emoji="🛠" title="Nothing here yet." sub="Start a new game or asset in the Builder." action={<Link to="/create"><HudButton>Open builder</HudButton></Link>} />;
+  if (rows.length === 0) return <EmptyState emoji="🛠" title="Nothing here yet." sub="Start a new game or asset in the Builder." action={<Link to="/studio/create"><HudButton>Open builder</HudButton></Link>} />;
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
       {rows.map((u) => (
@@ -227,7 +227,7 @@ function UGCTab({ query }: { query: string }) {
               {u.installs && <span className="flex items-center gap-1"><HardDrive className="w-3 h-3" /> {u.installs}</span>}
             </div>
             <div className="mt-4 flex items-center gap-2">
-              <Link to="/builder" className="flex-1"><HudButton className="w-full" variant="ghost">Open in builder</HudButton></Link>
+              <Link to="/studio/builder" className="flex-1"><HudButton className="w-full" variant="ghost">Open in builder</HudButton></Link>
               {u.manage ? (
                 <Link to="/manage/$kind/$id" params={{ kind: u.manage.kind, id: u.manage.id }}><HudButton size="sm" variant="secondary">Manage</HudButton></Link>
               ) : (

@@ -38,7 +38,7 @@ function LoginPage() {
           </p>
 
           <Link
-            to="/create"
+            to="/studio/create"
             className="mt-6 w-full inline-flex items-center justify-between gap-3 h-14 px-5 clip-hud bg-primary text-primary-foreground neon-border-magenta font-mono text-sm uppercase tracking-widest hover:brightness-110 transition"
           >
             <span className="flex items-center gap-3">

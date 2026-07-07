@@ -5,7 +5,7 @@ import { reports } from "@/lib/mock-moderation";
 import { Shield, AlertTriangle, Users, Package, Gamepad2, DollarSign, TrendingUp, ChevronRight, Lock } from "lucide-react";
 import { useEffect, useState } from "react";
 
-export const Route = createFileRoute("/admin")({
+export const Route = createFileRoute("/studio/admin")({
   head: () => ({ meta: [{ title: "Admin Console — Pixels Studio" }, { name: "robots", content: "noindex" }] }),
   component: () => <AppShell><Gate /></AppShell>,
 });
@@ -63,7 +63,7 @@ function Page() {
 
       {/* Quick actions */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <Link to="/moderation" className="rounded-2xl border-2 border-ink bg-white shadow-[3px_3px_0_0_var(--ink)] p-5 hover:translate-y-[-2px] transition">
+        <Link to="/studio/moderation" className="rounded-2xl border-2 border-ink bg-white shadow-[3px_3px_0_0_var(--ink)] p-5 hover:translate-y-[-2px] transition">
           <div className="flex items-center gap-2 mb-1"><AlertTriangle className="w-4 h-4 text-destructive" /><div className="font-black">Moderation queue</div></div>
           <div className="text-sm text-ink/60">{openReports} open reports</div>
           <div className="mt-3 flex items-center gap-1 text-xs font-mono uppercase tracking-widest text-primary">Open <ChevronRight className="w-3 h-3" /></div>
@@ -84,7 +84,7 @@ function Page() {
       <div className="rounded-2xl border-2 border-ink bg-white shadow-[4px_4px_0_0_var(--ink)] overflow-hidden">
         <div className="p-4 border-b-2 border-ink flex items-center justify-between">
           <div className="text-[10px] font-mono uppercase tracking-widest text-ink/60">Latest reports</div>
-          <Link to="/moderation" className="text-xs font-mono uppercase tracking-widest text-primary">View all →</Link>
+          <Link to="/studio/moderation" className="text-xs font-mono uppercase tracking-widest text-primary">View all →</Link>
         </div>
         <div className="divide-y-2 divide-ink/10">
           {reports.slice(0, 4).map((r) => (

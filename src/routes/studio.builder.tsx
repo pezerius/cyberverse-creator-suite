@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-export const Route = createFileRoute("/builder")({
+export const Route = createFileRoute("/studio/builder")({
   head: () => ({
     meta: [
       { title: "Editor — Pixels Studio" },

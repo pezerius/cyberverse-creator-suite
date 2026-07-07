@@ -4,7 +4,7 @@ import { HudButton, HudCard, Chip, SectionHeader } from "@/components/hud";
 import { Wand2, Share2, Coins, Sparkles, Play, Loader2 } from "lucide-react";
 import { useState } from "react";
 
-export const Route = createFileRoute("/create")({
+export const Route = createFileRoute("/studio/create")({
   head: () => ({
     meta: [
       { title: "Create — Pixels Studio" },
@@ -61,7 +61,7 @@ function CreatePage() {
           insults you.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <Link to="/templates">
+          <Link to="/studio/templates">
             <HudButton variant="primary" className="h-12 px-6">
               <Sparkles className="w-4 h-4" /> Start Creating
             </HudButton>
@@ -130,7 +130,7 @@ function CreatePage() {
                 {step >= progressSteps.length && (
                   <div className="mt-3 pt-3 border-t-2 border-ink/20 flex items-center justify-between">
                     <span className="text-primary font-bold">Draft ready.</span>
-                    <Link to="/builder" className="underline font-bold">Open in editor →</Link>
+                    <Link to="/studio/builder" className="underline font-bold">Open in editor →</Link>
                   </div>
                 )}
               </div>

@@ -61,7 +61,7 @@ export function OnboardingTour() {
           <button onClick={dismiss} className="text-xs font-mono uppercase tracking-widest text-ink/50 hover:text-ink px-3 h-9">Skip</button>
           {last ? (
             <Link
-              to="/create"
+              to="/studio/create"
               onClick={dismiss}
               className="inline-flex items-center gap-2 px-5 h-10 rounded-full bg-primary text-primary-foreground border-2 border-ink shadow-[2px_2px_0_0_var(--ink)] font-mono text-xs uppercase tracking-widest"
             >

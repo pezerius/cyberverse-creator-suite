@@ -5,7 +5,7 @@ import { reports, disputes, type Report } from "@/lib/mock-moderation";
 import { AlertTriangle, Check, X, MessageCircle, Package, Gamepad2, Users, Star, Shield } from "lucide-react";
 import { useMemo, useState } from "react";
 
-export const Route = createFileRoute("/moderation")({
+export const Route = createFileRoute("/studio/moderation")({
   head: () => ({ meta: [{ title: "Moderation Queue — Pixels Studio" }, { name: "robots", content: "noindex" }] }),
   component: () => <AppShell><Page /></AppShell>,
 });

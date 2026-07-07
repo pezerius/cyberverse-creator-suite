@@ -53,7 +53,7 @@ function Nav() {
         </nav>
         <div className="ml-auto flex items-center gap-2">
           <Link to="/login" className="hidden sm:inline-flex items-center h-10 px-4 rounded-full text-sm font-mono uppercase tracking-widest font-bold hover:bg-white border-2 border-transparent hover:border-ink">Log in</Link>
-          <Link to="/create" className="inline-flex items-center gap-2 h-10 px-5 rounded-full bg-primary text-primary-foreground border-2 border-ink shadow-[3px_3px_0_0_var(--ink)] text-sm font-mono uppercase tracking-widest font-bold hover:translate-y-[-1px] transition-transform">
+          <Link to="/studio/create" className="inline-flex items-center gap-2 h-10 px-5 rounded-full bg-primary text-primary-foreground border-2 border-ink shadow-[3px_3px_0_0_var(--ink)] text-sm font-mono uppercase tracking-widest font-bold hover:translate-y-[-1px] transition-transform">
             Open App <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -87,7 +87,7 @@ function Hero() {
             Pixels Studio is the browser-based game creation suite embedded inside the world you already play. Pick a template, paint a level, publish to the Hub — real players in minutes, real $PIXEL by morning.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/create" className="inline-flex items-center gap-2 h-14 px-7 rounded-full bg-primary text-primary-foreground border-2 border-ink shadow-[4px_4px_0_0_var(--ink)] text-sm font-mono uppercase tracking-widest font-bold hover:translate-y-[-2px] transition-transform">
+            <Link to="/studio/create" className="inline-flex items-center gap-2 h-14 px-7 rounded-full bg-primary text-primary-foreground border-2 border-ink shadow-[4px_4px_0_0_var(--ink)] text-sm font-mono uppercase tracking-widest font-bold hover:translate-y-[-2px] transition-transform">
               Open the Studio <ArrowRight className="w-4 h-4" />
             </Link>
             <a href="#how" className="inline-flex items-center gap-2 h-14 px-7 rounded-full bg-white text-ink border-2 border-ink shadow-[4px_4px_0_0_var(--ink)] text-sm font-mono uppercase tracking-widest font-bold hover:translate-y-[-2px] transition-transform">
@@ -401,7 +401,7 @@ function FinalCta() {
           Free forever. 60% of every $PIXEL is yours. No engine, no install, no revenue share that insults you.
         </p>
         <div className="mt-10 flex flex-wrap gap-3 justify-center">
-          <Link to="/create" className="inline-flex items-center gap-2 h-14 px-8 rounded-full bg-accent text-ink border-2 border-accent shadow-[4px_4px_0_0_var(--accent)] text-sm font-mono uppercase tracking-widest font-bold hover:translate-y-[-2px] transition-transform">
+          <Link to="/studio/create" className="inline-flex items-center gap-2 h-14 px-8 rounded-full bg-accent text-ink border-2 border-accent shadow-[4px_4px_0_0_var(--accent)] text-sm font-mono uppercase tracking-widest font-bold hover:translate-y-[-2px] transition-transform">
             Open the Studio <ArrowRight className="w-4 h-4" />
           </Link>
           <Link to="/hub" className="inline-flex items-center gap-2 h-14 px-8 rounded-full bg-transparent text-background border-2 border-background text-sm font-mono uppercase tracking-widest font-bold hover:bg-background hover:text-ink transition-colors">
