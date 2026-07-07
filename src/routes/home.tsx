@@ -52,8 +52,8 @@ function HomePage() {
 
       {/* Continue playing */}
       <Row title="Continue playing" icon={Play} href="/library" cta="Your library">
-        {continuePlaying.map((g) => (
-          <GameCard key={g.slug} game={g} progress={Math.floor(30 + Math.random() * 60)} />
+        {continuePlaying.map((g, i) => (
+          <GameCard key={g.slug} game={g} progress={[54, 67, 36, 82][i % 4]} />
         ))}
       </Row>
 
