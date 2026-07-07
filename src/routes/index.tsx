@@ -336,17 +336,16 @@ function PartyHubTease() {
             Drop into a voice room, invite your friends, and jump between games together without ever leaving the party. It's Discord + Steam friends list + arcade, in one place.
           </p>
           <ul className="mt-6 space-y-2 text-sm">
-            {[
+            {([
               [Headphones, "Voice rooms up to 12 people"],
               [Zap, "One-click game hopping — everyone follows"],
               [Sparkles, "Party quests with shared $PIXEL rewards"],
-            ].map(([Icon, l]) => (
-              <li key={l as string} className="flex items-center gap-3">
+            ] as const).map(([Icon, l]) => (
+              <li key={l} className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-background/15 border border-background/30 flex items-center justify-center">
-                  {/* @ts-expect-error dynamic icon */}
                   <Icon className="w-4 h-4" />
                 </div>
-                <span>{l as string}</span>
+                <span>{l}</span>
               </li>
             ))}
           </ul>
