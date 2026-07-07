@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ShieldCheck, Gamepad2, Hammer } from "lucide-react";
+import { ArrowRight, ShieldCheck, Gamepad2, Hammer, Phone, Mail, Apple, Music2 } from "lucide-react";
 
 type LoginMode = "hub" | "studio";
 
