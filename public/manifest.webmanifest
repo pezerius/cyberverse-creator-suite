@@ -1,0 +1,14 @@
+{
+  "name": "Pixels — Play & Build",
+  "short_name": "Pixels",
+  "description": "Pixels Hub for players, Pixels Studio for creators. Earn $PIXEL on Ronin.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F0EDFF",
+  "theme_color": "#F0EDFF",
+  "icons": [
+    { "src": "/favicon.ico", "sizes": "48x48 32x32 16x16", "type": "image/x-icon" }
+  ]
+}
