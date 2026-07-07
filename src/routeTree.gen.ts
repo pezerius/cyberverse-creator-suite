@@ -11,10 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WishlistRouteImport } from './routes/wishlist'
 import { Route as WalletRouteImport } from './routes/wallet'
+import { Route as TournamentsRouteImport } from './routes/tournaments'
 import { Route as StudioRouteImport } from './routes/studio'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as SearchRouteImport } from './routes/search'
+import { Route as QuestsRouteImport } from './routes/quests'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as ProRouteImport } from './routes/pro'
 import { Route as NotificationsRouteImport } from './routes/notifications'
@@ -58,6 +60,11 @@ const WalletRoute = WalletRouteImport.update({
   path: '/wallet',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TournamentsRoute = TournamentsRouteImport.update({
+  id: '/tournaments',
+  path: '/tournaments',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StudioRoute = StudioRouteImport.update({
   id: '/studio',
   path: '/studio',
@@ -76,6 +83,11 @@ const SettingsRoute = SettingsRouteImport.update({
 const SearchRoute = SearchRouteImport.update({
   id: '/search',
   path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuestsRoute = QuestsRouteImport.update({
+  id: '/quests',
+  path: '/quests',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileRoute = ProfileRouteImport.update({
@@ -254,10 +266,12 @@ export interface FileRoutesByFullPath {
   '/notifications': typeof NotificationsRoute
   '/pro': typeof ProRoute
   '/profile': typeof ProfileRoute
+  '/quests': typeof QuestsRoute
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRouteWithChildren
+  '/tournaments': typeof TournamentsRoute
   '/wallet': typeof WalletRoute
   '/wishlist': typeof WishlistRoute
   '/collections/$collectionId': typeof CollectionsCollectionIdRoute
@@ -293,9 +307,11 @@ export interface FileRoutesByTo {
   '/notifications': typeof NotificationsRoute
   '/pro': typeof ProRoute
   '/profile': typeof ProfileRoute
+  '/quests': typeof QuestsRoute
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tournaments': typeof TournamentsRoute
   '/wallet': typeof WalletRoute
   '/wishlist': typeof WishlistRoute
   '/collections/$collectionId': typeof CollectionsCollectionIdRoute
@@ -333,10 +349,12 @@ export interface FileRoutesById {
   '/notifications': typeof NotificationsRoute
   '/pro': typeof ProRoute
   '/profile': typeof ProfileRoute
+  '/quests': typeof QuestsRoute
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRouteWithChildren
+  '/tournaments': typeof TournamentsRoute
   '/wallet': typeof WalletRoute
   '/wishlist': typeof WishlistRoute
   '/collections/$collectionId': typeof CollectionsCollectionIdRoute
@@ -375,10 +393,12 @@ export interface FileRouteTypes {
     | '/notifications'
     | '/pro'
     | '/profile'
+    | '/quests'
     | '/search'
     | '/settings'
     | '/sitemap.xml'
     | '/studio'
+    | '/tournaments'
     | '/wallet'
     | '/wishlist'
     | '/collections/$collectionId'
@@ -414,9 +434,11 @@ export interface FileRouteTypes {
     | '/notifications'
     | '/pro'
     | '/profile'
+    | '/quests'
     | '/search'
     | '/settings'
     | '/sitemap.xml'
+    | '/tournaments'
     | '/wallet'
     | '/wishlist'
     | '/collections/$collectionId'
@@ -453,10 +475,12 @@ export interface FileRouteTypes {
     | '/notifications'
     | '/pro'
     | '/profile'
+    | '/quests'
     | '/search'
     | '/settings'
     | '/sitemap.xml'
     | '/studio'
+    | '/tournaments'
     | '/wallet'
     | '/wishlist'
     | '/collections/$collectionId'
@@ -494,10 +518,12 @@ export interface RootRouteChildren {
   NotificationsRoute: typeof NotificationsRoute
   ProRoute: typeof ProRoute
   ProfileRoute: typeof ProfileRoute
+  QuestsRoute: typeof QuestsRoute
   SearchRoute: typeof SearchRoute
   SettingsRoute: typeof SettingsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StudioRoute: typeof StudioRouteWithChildren
+  TournamentsRoute: typeof TournamentsRoute
   WalletRoute: typeof WalletRoute
   WishlistRoute: typeof WishlistRoute
   GSlugRoute: typeof GSlugRoute
@@ -519,6 +545,13 @@ declare module '@tanstack/react-router' {
       path: '/wallet'
       fullPath: '/wallet'
       preLoaderRoute: typeof WalletRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tournaments': {
+      id: '/tournaments'
+      path: '/tournaments'
+      fullPath: '/tournaments'
+      preLoaderRoute: typeof TournamentsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/studio': {
@@ -547,6 +580,13 @@ declare module '@tanstack/react-router' {
       path: '/search'
       fullPath: '/search'
       preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quests': {
+      id: '/quests'
+      path: '/quests'
+      fullPath: '/quests'
+      preLoaderRoute: typeof QuestsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/profile': {
@@ -858,10 +898,12 @@ const rootRouteChildren: RootRouteChildren = {
   NotificationsRoute: NotificationsRoute,
   ProRoute: ProRoute,
   ProfileRoute: ProfileRoute,
+  QuestsRoute: QuestsRoute,
   SearchRoute: SearchRoute,
   SettingsRoute: SettingsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StudioRoute: StudioRouteWithChildren,
+  TournamentsRoute: TournamentsRoute,
   WalletRoute: WalletRoute,
   WishlistRoute: WishlistRoute,
   GSlugRoute: GSlugRoute,
