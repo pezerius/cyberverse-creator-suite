@@ -61,7 +61,7 @@ function StudioNav() {
             Pixels Hub <ArrowRight className="w-3.5 h-3.5" />
           </Link>
           <Link to="/login" className="hidden sm:inline-flex items-center h-10 px-4 rounded-full text-xs font-mono uppercase tracking-widest font-bold text-background hover:bg-background/10 border-2 border-transparent">Log in</Link>
-          <Link to="/create" className="inline-flex items-center gap-2 h-10 px-5 rounded-full bg-accent text-ink border-2 border-background shadow-[3px_3px_0_0_var(--background)] text-sm font-mono uppercase tracking-widest font-bold hover:translate-y-[-1px] transition-transform">
+          <Link to="/studio/create" className="inline-flex items-center gap-2 h-10 px-5 rounded-full bg-accent text-ink border-2 border-background shadow-[3px_3px_0_0_var(--background)] text-sm font-mono uppercase tracking-widest font-bold hover:translate-y-[-1px] transition-transform">
             Open Studio <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -94,7 +94,7 @@ function StudioHero() {
             Pixels Studio is the creator side of the Pixels universe — a browser-based editor, an on-chain marketplace, and a built-in audience of 4.2M players. You make it. They play it. You get paid in $PIXEL.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/create" className="inline-flex items-center gap-2 h-14 px-7 rounded-full bg-primary text-primary-foreground border-2 border-ink shadow-[4px_4px_0_0_var(--ink)] text-sm font-mono uppercase tracking-widest font-bold hover:translate-y-[-2px] transition-transform">
+            <Link to="/studio/create" className="inline-flex items-center gap-2 h-14 px-7 rounded-full bg-primary text-primary-foreground border-2 border-ink shadow-[4px_4px_0_0_var(--ink)] text-sm font-mono uppercase tracking-widest font-bold hover:translate-y-[-2px] transition-transform">
               Start building <ArrowRight className="w-4 h-4" />
             </Link>
             <a href="#workspace" className="inline-flex items-center gap-2 h-14 px-7 rounded-full bg-white text-ink border-2 border-ink shadow-[4px_4px_0_0_var(--ink)] text-sm font-mono uppercase tracking-widest font-bold hover:translate-y-[-2px] transition-transform">
@@ -448,7 +448,7 @@ function StudioCta() {
         </h2>
         <p className="mt-5 text-lg opacity-80 max-w-2xl mx-auto">Free to start. No install. Your first playable is one template and one afternoon away.</p>
         <div className="mt-8 flex flex-wrap gap-3 justify-center">
-          <Link to="/create" className="inline-flex items-center gap-2 h-14 px-8 rounded-full bg-background text-ink border-2 border-ink shadow-[4px_4px_0_0_var(--ink)] text-sm font-mono uppercase tracking-widest font-bold hover:translate-y-[-2px] transition-transform">
+          <Link to="/studio/create" className="inline-flex items-center gap-2 h-14 px-8 rounded-full bg-background text-ink border-2 border-ink shadow-[4px_4px_0_0_var(--ink)] text-sm font-mono uppercase tracking-widest font-bold hover:translate-y-[-2px] transition-transform">
             Start building <ArrowRight className="w-4 h-4" />
           </Link>
           <Link to="/" className="inline-flex items-center gap-2 h-14 px-8 rounded-full bg-ink text-background border-2 border-background shadow-[4px_4px_0_0_var(--background)] text-sm font-mono uppercase tracking-widest font-bold hover:translate-y-[-2px] transition-transform">
@@ -475,7 +475,7 @@ function StudioFooter() {
         </div>
         {[
           { title: "Product", links: [["Workspace", "#workspace"], ["Tools", "#tools"], ["Earnings", "#earnings"], ["FAQ", "#faq"]] },
-          { title: "Creators", links: [["Templates", "/templates"], ["Marketplace", "/marketplace"], ["Docs", "/legal"], ["Creator agreement", "/legal/creator-agreement"]] },
+          { title: "Creators", links: [["Templates", "/studio/templates"], ["Marketplace", "/marketplace"], ["Docs", "/legal"], ["Creator agreement", "/legal/creator-agreement"]] },
           { title: "Pixels", links: [["Play now", "/"], ["Party Hub", "/hub"], ["Wallet", "/wallet"], ["Log in", "/login"]] },
         ].map((col) => (
           <div key={col.title}>

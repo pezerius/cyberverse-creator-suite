@@ -39,10 +39,10 @@ function DashboardPage() {
   return (
     <div>
       <SubNav>
-        <SubNavLink to="/create" label="Welcome" />
-        <SubNavLink to="/templates" label="Templates" />
-        <SubNavLink to="/builder" label="Editor" />
-        <SubNavLink to="/dashboard" label="My Projects" active />
+        <SubNavLink to="/studio/create" label="Welcome" />
+        <SubNavLink to="/studio/templates" label="Templates" />
+        <SubNavLink to="/studio/builder" label="Editor" />
+        <SubNavLink to="/studio/dashboard" label="My Projects" active />
         <SubNavLink to="/pro" label="Upgrade" />
       </SubNav>
 
@@ -56,7 +56,7 @@ function DashboardPage() {
               <select className="h-10 px-3 rounded-full bg-white border-2 border-ink shadow-[2px_2px_0_0_var(--ink)] font-mono text-xs uppercase tracking-widest font-bold">
                 <option>Last 30 days</option><option>Last 7 days</option><option>Last 90 days</option><option>Year to date</option>
               </select>
-              <Link to="/templates">
+              <Link to="/studio/templates">
                 <HudButton variant="primary"><Plus className="w-4 h-4" /> New project</HudButton>
               </Link>
             </div>
@@ -100,7 +100,7 @@ function OverviewPanel() {
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
       {projects.map((p) => (
         <div key={p.name} className="bg-white border-2 border-ink rounded-3xl shadow-[4px_4px_0_0_var(--ink)] overflow-hidden group hover:translate-y-[-2px] transition-transform">
-          <Link to="/builder" className="block">
+          <Link to="/studio/builder" className="block">
             <div className={`h-32 bg-gradient-to-br ${p.grad} relative flex items-center justify-center border-b-2 border-ink`}>
               <div className="text-5xl">{p.emoji}</div>
               <div className="absolute top-2 right-2"><Chip tone={statusTone[p.status]}>{p.status}</Chip></div>
@@ -113,7 +113,7 @@ function OverviewPanel() {
               <span className="text-[oklch(0.55_0.22_45)] font-bold">{p.revenue}</span>
             </div>
             <div className="mt-3 flex items-center gap-2">
-              <Link to="/builder" className="flex-1"><HudButton size="sm" variant="ghost" className="w-full">Open editor</HudButton></Link>
+              <Link to="/studio/builder" className="flex-1"><HudButton size="sm" variant="ghost" className="w-full">Open editor</HudButton></Link>
               {p.slug ? (
                 <Link to="/manage/$kind/$id" params={{ kind: "game", id: p.slug }}><HudButton size="sm" variant="secondary">Manage</HudButton></Link>
               ) : (

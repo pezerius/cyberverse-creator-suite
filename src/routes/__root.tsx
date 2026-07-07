@@ -28,7 +28,7 @@ function NotFoundComponent() {
         <p className="mt-2 text-sm text-ink/60">You wandered off Realm-7. Head back to base and try a different door.</p>
         <div className="mt-6 flex flex-wrap gap-2 justify-center">
           <Link to="/" className="inline-flex items-center justify-center px-5 h-10 rounded-full bg-primary text-primary-foreground border-2 border-ink shadow-[3px_3px_0_0_var(--ink)] font-mono text-xs uppercase tracking-widest">Landing page</Link>
-          <Link to="/create" className="inline-flex items-center justify-center px-5 h-10 rounded-full bg-white text-ink border-2 border-ink shadow-[3px_3px_0_0_var(--ink)] font-mono text-xs uppercase tracking-widest">Open the studio</Link>
+          <Link to="/studio/create" className="inline-flex items-center justify-center px-5 h-10 rounded-full bg-white text-ink border-2 border-ink shadow-[3px_3px_0_0_var(--ink)] font-mono text-xs uppercase tracking-widest">Open the studio</Link>
         </div>
       </div>
     </div>

@@ -15,10 +15,10 @@ type Action = {
 };
 
 const staticActions: Action[] = [
-  { id: "go-dash",       label: "Dashboard",           group: "Jump to", icon: LayoutDashboard, to: "/dashboard", hint: "G D" },
-  { id: "go-create",     label: "Create",              group: "Jump to", icon: Hammer,          to: "/create",    hint: "G C" },
-  { id: "go-builder",    label: "Builder",             group: "Jump to", icon: Hammer,          to: "/builder" },
-  { id: "go-templates",  label: "Templates",           group: "Jump to", icon: Sparkles,        to: "/templates" },
+  { id: "go-dash",       label: "Dashboard",           group: "Jump to", icon: LayoutDashboard, to: "/studio/dashboard", hint: "G D" },
+  { id: "go-create",     label: "Create",              group: "Jump to", icon: Hammer,          to: "/studio/create",    hint: "G C" },
+  { id: "go-builder",    label: "Builder",             group: "Jump to", icon: Hammer,          to: "/studio/builder" },
+  { id: "go-templates",  label: "Templates",           group: "Jump to", icon: Sparkles,        to: "/studio/templates" },
   { id: "go-hub",        label: "Party Hub",           group: "Jump to", icon: Users,           to: "/hub" },
   { id: "go-market",     label: "Marketplace",         group: "Jump to", icon: Store,           to: "/marketplace" },
   { id: "go-profile",    label: "Profile",             group: "Jump to", icon: User,            to: "/profile" },
@@ -27,9 +27,9 @@ const staticActions: Action[] = [
   { id: "go-settings",   label: "Settings",            group: "Jump to", icon: Settings,        to: "/settings" },
   { id: "go-pro",        label: "Upgrade to Pro",      group: "Jump to", icon: Sparkles,        to: "/pro" },
   { id: "act-list",      label: "List a new asset",    group: "Actions", icon: Plus,            to: "/marketplace/list", hint: "N A" },
-  { id: "act-new-game",  label: "Start a new game",    group: "Actions", icon: Plus,            to: "/create",           hint: "N G" },
+  { id: "act-new-game",  label: "Start a new game",    group: "Actions", icon: Plus,            to: "/studio/create",           hint: "N G" },
   { id: "act-topup",     label: "Top up $PIXEL wallet",group: "Actions", icon: Wallet,          to: "/wallet",           keywords: "buy pixel add funds" },
-  { id: "help-tour",     label: "Restart onboarding tour", group: "Help", icon: GraduationCap,  to: "/create",           keywords: "tutorial guide" },
+  { id: "help-tour",     label: "Restart onboarding tour", group: "Help", icon: GraduationCap,  to: "/studio/create",           keywords: "tutorial guide" },
   { id: "help-changelog",label: "What's new",           group: "Help",   icon: FileText,        to: "/changelog" },
   { id: "help-terms",    label: "Terms of use",         group: "Help",   icon: FileText,        to: "/legal/terms" },
   { id: "help-privacy",  label: "Privacy policy",       group: "Help",   icon: FileText,        to: "/legal/privacy" },

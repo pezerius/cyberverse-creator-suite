@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WishlistRouteImport } from './routes/wishlist'
 import { Route as WalletRouteImport } from './routes/wallet'
+import { Route as StudioRouteImport } from './routes/studio'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as SearchRouteImport } from './routes/search'
@@ -55,6 +56,11 @@ const WishlistRoute = WishlistRouteImport.update({
 const WalletRoute = WalletRouteImport.update({
   id: '/wallet',
   path: '/wallet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudioRoute = StudioRouteImport.update({
+  id: '/studio',
+  path: '/studio',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -143,9 +149,9 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const StudioIndexRoute = StudioIndexRouteImport.update({
-  id: '/studio/',
-  path: '/studio/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => StudioRoute,
 } as any)
 const MarketplaceIndexRoute = MarketplaceIndexRouteImport.update({
   id: '/',
@@ -158,39 +164,39 @@ const UHandleRoute = UHandleRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const StudioTemplatesRoute = StudioTemplatesRouteImport.update({
-  id: '/studio/templates',
-  path: '/studio/templates',
-  getParentRoute: () => rootRouteImport,
+  id: '/templates',
+  path: '/templates',
+  getParentRoute: () => StudioRoute,
 } as any)
 const StudioModerationRoute = StudioModerationRouteImport.update({
-  id: '/studio/moderation',
-  path: '/studio/moderation',
-  getParentRoute: () => rootRouteImport,
+  id: '/moderation',
+  path: '/moderation',
+  getParentRoute: () => StudioRoute,
 } as any)
 const StudioInventoryRoute = StudioInventoryRouteImport.update({
-  id: '/studio/inventory',
-  path: '/studio/inventory',
-  getParentRoute: () => rootRouteImport,
+  id: '/inventory',
+  path: '/inventory',
+  getParentRoute: () => StudioRoute,
 } as any)
 const StudioDashboardRoute = StudioDashboardRouteImport.update({
-  id: '/studio/dashboard',
-  path: '/studio/dashboard',
-  getParentRoute: () => rootRouteImport,
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => StudioRoute,
 } as any)
 const StudioCreateRoute = StudioCreateRouteImport.update({
-  id: '/studio/create',
-  path: '/studio/create',
-  getParentRoute: () => rootRouteImport,
+  id: '/create',
+  path: '/create',
+  getParentRoute: () => StudioRoute,
 } as any)
 const StudioBuilderRoute = StudioBuilderRouteImport.update({
-  id: '/studio/builder',
-  path: '/studio/builder',
-  getParentRoute: () => rootRouteImport,
+  id: '/builder',
+  path: '/builder',
+  getParentRoute: () => StudioRoute,
 } as any)
 const StudioAdminRoute = StudioAdminRouteImport.update({
-  id: '/studio/admin',
-  path: '/studio/admin',
-  getParentRoute: () => rootRouteImport,
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => StudioRoute,
 } as any)
 const MarketplaceListRoute = MarketplaceListRouteImport.update({
   id: '/list',
@@ -251,6 +257,7 @@ export interface FileRoutesByFullPath {
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/studio': typeof StudioRouteWithChildren
   '/wallet': typeof WalletRoute
   '/wishlist': typeof WishlistRoute
   '/collections/$collectionId': typeof CollectionsCollectionIdRoute
@@ -329,6 +336,7 @@ export interface FileRoutesById {
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/studio': typeof StudioRouteWithChildren
   '/wallet': typeof WalletRoute
   '/wishlist': typeof WishlistRoute
   '/collections/$collectionId': typeof CollectionsCollectionIdRoute
@@ -370,6 +378,7 @@ export interface FileRouteTypes {
     | '/search'
     | '/settings'
     | '/sitemap.xml'
+    | '/studio'
     | '/wallet'
     | '/wishlist'
     | '/collections/$collectionId'
@@ -447,6 +456,7 @@ export interface FileRouteTypes {
     | '/search'
     | '/settings'
     | '/sitemap.xml'
+    | '/studio'
     | '/wallet'
     | '/wishlist'
     | '/collections/$collectionId'
@@ -487,18 +497,11 @@ export interface RootRouteChildren {
   SearchRoute: typeof SearchRoute
   SettingsRoute: typeof SettingsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  StudioRoute: typeof StudioRouteWithChildren
   WalletRoute: typeof WalletRoute
   WishlistRoute: typeof WishlistRoute
   GSlugRoute: typeof GSlugRoute
-  StudioAdminRoute: typeof StudioAdminRoute
-  StudioBuilderRoute: typeof StudioBuilderRoute
-  StudioCreateRoute: typeof StudioCreateRoute
-  StudioDashboardRoute: typeof StudioDashboardRoute
-  StudioInventoryRoute: typeof StudioInventoryRoute
-  StudioModerationRoute: typeof StudioModerationRoute
-  StudioTemplatesRoute: typeof StudioTemplatesRoute
   UHandleRoute: typeof UHandleRoute
-  StudioIndexRoute: typeof StudioIndexRoute
   ManageKindIdRoute: typeof ManageKindIdRoute
 }
 
@@ -516,6 +519,13 @@ declare module '@tanstack/react-router' {
       path: '/wallet'
       fullPath: '/wallet'
       preLoaderRoute: typeof WalletRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/studio': {
+      id: '/studio'
+      path: '/studio'
+      fullPath: '/studio'
+      preLoaderRoute: typeof StudioRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -639,10 +649,10 @@ declare module '@tanstack/react-router' {
     }
     '/studio/': {
       id: '/studio/'
-      path: '/studio'
+      path: '/'
       fullPath: '/studio/'
       preLoaderRoute: typeof StudioIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof StudioRoute
     }
     '/marketplace/': {
       id: '/marketplace/'
@@ -660,52 +670,52 @@ declare module '@tanstack/react-router' {
     }
     '/studio/templates': {
       id: '/studio/templates'
-      path: '/studio/templates'
+      path: '/templates'
       fullPath: '/studio/templates'
       preLoaderRoute: typeof StudioTemplatesRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof StudioRoute
     }
     '/studio/moderation': {
       id: '/studio/moderation'
-      path: '/studio/moderation'
+      path: '/moderation'
       fullPath: '/studio/moderation'
       preLoaderRoute: typeof StudioModerationRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof StudioRoute
     }
     '/studio/inventory': {
       id: '/studio/inventory'
-      path: '/studio/inventory'
+      path: '/inventory'
       fullPath: '/studio/inventory'
       preLoaderRoute: typeof StudioInventoryRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof StudioRoute
     }
     '/studio/dashboard': {
       id: '/studio/dashboard'
-      path: '/studio/dashboard'
+      path: '/dashboard'
       fullPath: '/studio/dashboard'
       preLoaderRoute: typeof StudioDashboardRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof StudioRoute
     }
     '/studio/create': {
       id: '/studio/create'
-      path: '/studio/create'
+      path: '/create'
       fullPath: '/studio/create'
       preLoaderRoute: typeof StudioCreateRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof StudioRoute
     }
     '/studio/builder': {
       id: '/studio/builder'
-      path: '/studio/builder'
+      path: '/builder'
       fullPath: '/studio/builder'
       preLoaderRoute: typeof StudioBuilderRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof StudioRoute
     }
     '/studio/admin': {
       id: '/studio/admin'
-      path: '/studio/admin'
+      path: '/admin'
       fullPath: '/studio/admin'
       preLoaderRoute: typeof StudioAdminRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof StudioRoute
     }
     '/marketplace/list': {
       id: '/marketplace/list'
@@ -808,6 +818,31 @@ const MarketplaceRouteWithChildren = MarketplaceRoute._addFileChildren(
   MarketplaceRouteChildren,
 )
 
+interface StudioRouteChildren {
+  StudioAdminRoute: typeof StudioAdminRoute
+  StudioBuilderRoute: typeof StudioBuilderRoute
+  StudioCreateRoute: typeof StudioCreateRoute
+  StudioDashboardRoute: typeof StudioDashboardRoute
+  StudioInventoryRoute: typeof StudioInventoryRoute
+  StudioModerationRoute: typeof StudioModerationRoute
+  StudioTemplatesRoute: typeof StudioTemplatesRoute
+  StudioIndexRoute: typeof StudioIndexRoute
+}
+
+const StudioRouteChildren: StudioRouteChildren = {
+  StudioAdminRoute: StudioAdminRoute,
+  StudioBuilderRoute: StudioBuilderRoute,
+  StudioCreateRoute: StudioCreateRoute,
+  StudioDashboardRoute: StudioDashboardRoute,
+  StudioInventoryRoute: StudioInventoryRoute,
+  StudioModerationRoute: StudioModerationRoute,
+  StudioTemplatesRoute: StudioTemplatesRoute,
+  StudioIndexRoute: StudioIndexRoute,
+}
+
+const StudioRouteWithChildren =
+  StudioRoute._addFileChildren(StudioRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ChangelogRoute: ChangelogRoute,
@@ -826,18 +861,11 @@ const rootRouteChildren: RootRouteChildren = {
   SearchRoute: SearchRoute,
   SettingsRoute: SettingsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  StudioRoute: StudioRouteWithChildren,
   WalletRoute: WalletRoute,
   WishlistRoute: WishlistRoute,
   GSlugRoute: GSlugRoute,
-  StudioAdminRoute: StudioAdminRoute,
-  StudioBuilderRoute: StudioBuilderRoute,
-  StudioCreateRoute: StudioCreateRoute,
-  StudioDashboardRoute: StudioDashboardRoute,
-  StudioInventoryRoute: StudioInventoryRoute,
-  StudioModerationRoute: StudioModerationRoute,
-  StudioTemplatesRoute: StudioTemplatesRoute,
   UHandleRoute: UHandleRoute,
-  StudioIndexRoute: StudioIndexRoute,
   ManageKindIdRoute: ManageKindIdRoute,
 }
 export const routeTree = rootRouteImport

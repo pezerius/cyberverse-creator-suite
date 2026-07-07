@@ -28,7 +28,7 @@ export const Route = createFileRoute("/manage/$kind/$id")({
     return { meta: [{ title: `Manage ${name} — Pixels Studio` }, { name: "robots", content: "noindex" }] };
   },
   notFoundComponent: () => (
-    <AppShell><div className="max-w-2xl mx-auto p-8"><EmptyState emoji="🔍" title="Nothing to manage here." action={<Link to="/dashboard"><HudButton>Back to dashboard</HudButton></Link>} /></div></AppShell>
+    <AppShell><div className="max-w-2xl mx-auto p-8"><EmptyState emoji="🔍" title="Nothing to manage here." action={<Link to="/studio/dashboard"><HudButton>Back to dashboard</HudButton></Link>} /></div></AppShell>
   ),
   component: () => <AppShell><ManagePage /></AppShell>,
 });
@@ -49,7 +49,7 @@ function ManagePage() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 md:px-6 py-8">
-      <Link to="/dashboard" className="inline-flex items-center gap-1 text-xs font-mono uppercase tracking-widest text-ink/60 hover:text-ink mb-5">
+      <Link to="/studio/dashboard" className="inline-flex items-center gap-1 text-xs font-mono uppercase tracking-widest text-ink/60 hover:text-ink mb-5">
         <ArrowLeft className="w-3.5 h-3.5" /> Back to dashboard
       </Link>
 

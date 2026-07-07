@@ -43,7 +43,7 @@ function TemplatesPage() {
         title="Steal a head start."
         sub="Every template is a working game. Ship as-is, or tear it apart in the editor."
         right={
-          <Link to="/create">
+          <Link to="/studio/create">
             <HudButton variant="secondary">← Back to Welcome</HudButton>
           </Link>
         }
@@ -76,7 +76,7 @@ function TemplatesPage() {
 function TemplateCard({ t }: { t: (typeof templates)[number] }) {
   const diffTone: Record<Difficulty, "green" | "amber" | "red"> = { Easy: "green", Medium: "amber", Advanced: "red" };
   return (
-    <Link to="/builder" className="group hud-panel p-0 overflow-hidden flex flex-col hover:neon-border-magenta transition">
+    <Link to="/studio/builder" className="group hud-panel p-0 overflow-hidden flex flex-col hover:neon-border-magenta transition">
       <div className={`h-40 bg-gradient-to-br ${t.grad} relative flex items-center justify-center`}>
         <div className="text-6xl opacity-80 group-hover:scale-110 transition">{t.emoji}</div>
         <div className="absolute inset-0 grid-canvas opacity-25" />

@@ -21,15 +21,15 @@ const playerNav: NavItem[] = [
 ];
 
 const creatorNav: NavItem[] = [
-  { to: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
-  { to: "/create", icon: Hammer, label: "Create" },
-  { to: "/inventory", icon: Package, label: "My UGC" },
+  { to: "/studio/dashboard", icon: LayoutDashboard, label: "Dashboard" },
+  { to: "/studio/create", icon: Hammer, label: "Create" },
+  { to: "/studio/inventory", icon: Package, label: "My UGC" },
   { to: "/marketplace", icon: Store, label: "Marketplace" },
   { to: "/feed", icon: Activity, label: "Feed" },
   { to: "/hub", icon: Users, label: "Party Hub" },
   { to: "/profile", icon: User, label: "Profile" },
   { to: "/pro", icon: Sparkles, label: "Upgrade" },
-  { to: "/admin", icon: Shield, label: "Admin" },
+  { to: "/studio/admin", icon: Shield, label: "Admin" },
 ];
 
 export function AppShell({ children }: { children: ReactNode }) {
@@ -40,9 +40,9 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   const isActive = (item: NavItem) => {
     if (item.disabled) return false;
-    if (item.to === "/create") return pathname === "/create" || pathname === "/templates" || pathname.startsWith("/builder");
+    if (item.to === "/studio/create") return pathname === "/studio/create" || pathname === "/studio/templates" || pathname.startsWith("/studio/builder");
     if (item.to === "/marketplace") return pathname.startsWith("/marketplace") || pathname.startsWith("/collections");
-    if (item.to === "/admin") return pathname.startsWith("/admin") || pathname.startsWith("/moderation");
+    if (item.to === "/studio/admin") return pathname.startsWith("/studio/admin") || pathname.startsWith("/studio/moderation");
     return pathname.startsWith(item.to);
   };
 
@@ -53,7 +53,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       {/* Desktop rail */}
       <aside className="hidden lg:flex w-20 shrink-0 border-r-2 border-ink bg-white flex-col items-center py-4 gap-3 sticky top-0 h-screen z-30">
-        <Link to={mode === "play" ? "/home" : "/create"} className="mb-2" aria-label="Pixels Studio">
+        <Link to={mode === "play" ? "/home" : "/studio/create"} className="mb-2" aria-label="Pixels Studio">
           <div className="w-12 h-12 rounded-2xl bg-primary border-2 border-ink shadow-[3px_3px_0_0_var(--ink)] flex items-center justify-center">
             <span className="text-primary-foreground text-[10px] font-bold" style={{ fontFamily: "var(--font-pixel)" }}>PX</span>
           </div>
