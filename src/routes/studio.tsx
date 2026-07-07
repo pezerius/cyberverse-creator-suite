@@ -145,17 +145,16 @@ function StudioMock() {
         </div>
         <div className="grid grid-cols-12 bg-white">
           <aside className="col-span-3 border-r-2 border-ink bg-[oklch(0.97_0.01_270)] p-3 space-y-1.5">
-            {[
+            {([
               [Layers, "Scene"],
               [Cpu, "Logic"],
               [Store, "Assets"],
               [GitBranch, "Versions"],
               [LineChart, "Analytics"],
-            ].map(([Icon, l], i) => (
-              <div key={l as string} className={`flex items-center gap-2 px-2 h-8 rounded-lg text-[11px] font-mono uppercase tracking-widest border-2 ${i === 0 ? "bg-primary text-primary-foreground border-ink" : "border-transparent text-ink/60"}`}>
-                {/* @ts-expect-error dyn icon */}
+            ] as const).map(([Icon, l], i) => (
+              <div key={l} className={`flex items-center gap-2 px-2 h-8 rounded-lg text-[11px] font-mono uppercase tracking-widest border-2 ${i === 0 ? "bg-primary text-primary-foreground border-ink" : "border-transparent text-ink/60"}`}>
                 <Icon className="w-3.5 h-3.5" />
-                {l as string}
+                {l}
               </div>
             ))}
           </aside>

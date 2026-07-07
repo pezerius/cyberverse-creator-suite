@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as WishlistRouteImport } from './routes/wishlist'
 import { Route as WalletRouteImport } from './routes/wallet'
 import { Route as TemplatesRouteImport } from './routes/templates'
+import { Route as StudioRouteImport } from './routes/studio'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as SearchRouteImport } from './routes/search'
@@ -59,6 +60,11 @@ const WalletRoute = WalletRouteImport.update({
 const TemplatesRoute = TemplatesRouteImport.update({
   id: '/templates',
   path: '/templates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudioRoute = StudioRouteImport.update({
+  id: '/studio',
+  path: '/studio',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -251,6 +257,7 @@ export interface FileRoutesByFullPath {
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/studio': typeof StudioRoute
   '/templates': typeof TemplatesRoute
   '/wallet': typeof WalletRoute
   '/wishlist': typeof WishlistRoute
@@ -288,6 +295,7 @@ export interface FileRoutesByTo {
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/studio': typeof StudioRoute
   '/templates': typeof TemplatesRoute
   '/wallet': typeof WalletRoute
   '/wishlist': typeof WishlistRoute
@@ -327,6 +335,7 @@ export interface FileRoutesById {
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/studio': typeof StudioRoute
   '/templates': typeof TemplatesRoute
   '/wallet': typeof WalletRoute
   '/wishlist': typeof WishlistRoute
@@ -367,6 +376,7 @@ export interface FileRouteTypes {
     | '/search'
     | '/settings'
     | '/sitemap.xml'
+    | '/studio'
     | '/templates'
     | '/wallet'
     | '/wishlist'
@@ -404,6 +414,7 @@ export interface FileRouteTypes {
     | '/search'
     | '/settings'
     | '/sitemap.xml'
+    | '/studio'
     | '/templates'
     | '/wallet'
     | '/wishlist'
@@ -442,6 +453,7 @@ export interface FileRouteTypes {
     | '/search'
     | '/settings'
     | '/sitemap.xml'
+    | '/studio'
     | '/templates'
     | '/wallet'
     | '/wishlist'
@@ -481,6 +493,7 @@ export interface RootRouteChildren {
   SearchRoute: typeof SearchRoute
   SettingsRoute: typeof SettingsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  StudioRoute: typeof StudioRoute
   TemplatesRoute: typeof TemplatesRoute
   WalletRoute: typeof WalletRoute
   WishlistRoute: typeof WishlistRoute
@@ -510,6 +523,13 @@ declare module '@tanstack/react-router' {
       path: '/templates'
       fullPath: '/templates'
       preLoaderRoute: typeof TemplatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/studio': {
+      id: '/studio'
+      path: '/studio'
+      fullPath: '/studio'
+      preLoaderRoute: typeof StudioRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -812,6 +832,7 @@ const rootRouteChildren: RootRouteChildren = {
   SearchRoute: SearchRoute,
   SettingsRoute: SettingsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  StudioRoute: StudioRoute,
   TemplatesRoute: TemplatesRoute,
   WalletRoute: WalletRoute,
   WishlistRoute: WishlistRoute,
@@ -822,13 +843,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
