@@ -392,19 +392,29 @@ function EarnStrip() {
     <section id="earn" className="max-w-7xl mx-auto px-6 py-20 md:py-28">
       <div className="rounded-[36px] bg-ink text-background border-2 border-ink shadow-[8px_8px_0_0_var(--ink)] p-8 md:p-12 grid lg:grid-cols-2 gap-10 items-center">
         <div>
-          <div className="inline-flex items-center px-3 h-7 rounded-full bg-accent text-ink border-2 border-accent text-[11px] font-mono uppercase tracking-widest mb-5">// Rewards</div>
+          <div className="inline-flex items-center gap-2 px-3 h-7 rounded-full bg-accent text-ink border-2 border-accent text-[11px] font-mono uppercase tracking-widest mb-5">
+            // Rewards · Powered by Stacked
+          </div>
           <h2 className="italic font-black text-4xl md:text-5xl tracking-tight leading-[0.95]" style={{ fontFamily: "var(--font-display)" }}>
             Play the games. <br /> Get paid in <span className="text-accent">$PIXEL.</span>
           </h2>
           <p className="mt-4 text-background/70 leading-relaxed max-w-lg">
-            $PIXEL is real, on-chain, and lives on Ronin — the same wallet you already use across the Pixels world. Earn it from wins, tournaments, daily quests, and creator tips. Spend it on skins, keys, and passes.
+            Pixels Hub rewards run on <a href="https://stacked.xyz/" target="_blank" rel="noreferrer" className="text-accent underline decoration-accent/40 underline-offset-4 hover:decoration-accent">Stacked</a> — the quest layer built for the Pixels world. When a game gets popular here, it gets eligible to publish Stacked quests, and every $PIXEL you earn lands in your Ronin wallet.
           </p>
+          <div className="mt-5 flex flex-wrap gap-2">
+            <a href="https://stacked.xyz/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 h-10 px-4 rounded-full bg-accent text-ink border-2 border-accent text-[11px] font-mono uppercase tracking-widest font-bold hover:translate-y-[-1px] transition-transform">
+              Open Stacked <ArrowRight className="w-3.5 h-3.5" />
+            </a>
+            <span className="inline-flex items-center px-3 h-10 rounded-full bg-background/5 border-2 border-background/20 text-[11px] font-mono uppercase tracking-widest text-background/70">
+              Quests · Tournaments · Drops
+            </span>
+          </div>
         </div>
         <div className="grid grid-cols-2 gap-3">
           {[
-            { k: "Wins", v: "10–500", sub: "$PIXEL per match" },
+            { k: "Stacked quests", v: "5 min", sub: "daily guaranteed drops" },
             { k: "Weekly tournaments", v: "Up to 50k", sub: "prize pool per game" },
-            { k: "Daily quests", v: "5 min", sub: "for guaranteed drops" },
+            { k: "Match wins", v: "10–500", sub: "$PIXEL per game" },
             { k: "Withdraw", v: "→ Ronin", sub: "any wallet, any time" },
           ].map((c) => (
             <div key={c.k} className="rounded-2xl border-2 border-background/20 bg-background/5 p-4">
@@ -413,6 +423,12 @@ function EarnStrip() {
               <div className="text-[10px] font-mono uppercase tracking-widest text-background/60 mt-0.5">{c.sub}</div>
             </div>
           ))}
+          <div className="col-span-2 rounded-2xl border-2 border-accent/40 bg-accent/10 p-4">
+            <div className="text-[10px] font-mono uppercase tracking-widest text-accent">// For creators</div>
+            <div className="text-sm mt-1 text-background/90 leading-relaxed">
+              Games that get traction on Pixels Hub become eligible to launch <span className="text-accent font-bold">Stacked quests</span> — pulling in a whole new wave of players hunting rewards in your game.
+            </div>
+          </div>
         </div>
       </div>
     </section>
