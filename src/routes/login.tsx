@@ -7,21 +7,12 @@ export const Route = createFileRoute("/login")({
   validateSearch: (search: Record<string, unknown>): { mode: LoginMode } => ({
     mode: search.mode === "studio" ? "studio" : "hub",
   }),
-  head: ({ match }) => {
-    const mode = (match.search as { mode?: LoginMode })?.mode ?? "hub";
-    return {
-      meta:
-        mode === "studio"
-          ? [
-              { title: "Log in — Pixels Studio" },
-              { name: "description", content: "Continue with your Pixels account. No new signup." },
-            ]
-          : [
-              { title: "Log in — Pixels Hub" },
-              { name: "description", content: "Jump back into Pixels Hub. One Pixels account for games, skins, party, and rewards." },
-            ],
-    };
-  },
+  head: () => ({
+    meta: [
+      { title: "Log in — Pixels" },
+      { name: "description", content: "One Pixels account for Pixels Hub (players) and Pixels Studio (creators)." },
+    ],
+  }),
   component: LoginPage,
 });
 
