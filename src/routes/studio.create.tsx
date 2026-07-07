@@ -4,7 +4,7 @@ import { HudButton, HudCard, Chip, SectionHeader } from "@/components/hud";
 import { Wand2, Share2, Coins, Sparkles, Play, Loader2 } from "lucide-react";
 import { useState } from "react";
 
-export const Route = createFileRoute("/create")({
+export const Route = createFileRoute("/studio/create")({
   head: () => ({
     meta: [
       { title: "Create — Pixels Studio" },

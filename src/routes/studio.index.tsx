@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Wand2, Layers, Zap, Coins, Store, Sparkles, Trophy, PlayCircle, Check, Hammer, Cpu, GitBranch, LineChart } from "lucide-react";
 
-export const Route = createFileRoute("/studio")({
+export const Route = createFileRoute("/studio/")({
   head: () => ({
     meta: [
       { title: "Pixels Studio — The creator workspace for Pixels." },

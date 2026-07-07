@@ -5,7 +5,7 @@ import { reports } from "@/lib/mock-moderation";
 import { Shield, AlertTriangle, Users, Package, Gamepad2, DollarSign, TrendingUp, ChevronRight, Lock } from "lucide-react";
 import { useEffect, useState } from "react";
 
-export const Route = createFileRoute("/admin")({
+export const Route = createFileRoute("/studio/admin")({
   head: () => ({ meta: [{ title: "Admin Console — Pixels Studio" }, { name: "robots", content: "noindex" }] }),
   component: () => <AppShell><Gate /></AppShell>,
 });

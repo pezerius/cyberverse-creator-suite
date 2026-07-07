@@ -4,7 +4,7 @@ import { HudButton, HudCard, Chip, SectionHeader, Stat, Sparkline, SubNav, SubNa
 import { Plus, ArrowUpRight, Wallet, TrendingUp, Users, DollarSign, Star, Zap, Globe } from "lucide-react";
 import { useState } from "react";
 
-export const Route = createFileRoute("/dashboard")({
+export const Route = createFileRoute("/studio/dashboard")({
   head: () => ({
     meta: [{ title: "Growth Board — Pixels Studio" }, { name: "description", content: "Track revenue, players, and payouts across your Pixels Studio catalog." }],
   }),

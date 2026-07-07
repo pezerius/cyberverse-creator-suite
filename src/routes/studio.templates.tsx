@@ -3,7 +3,7 @@ import { AppShell } from "@/components/AppShell";
 import { HudButton, HudCard, Chip, SectionHeader } from "@/components/hud";
 import { Lock, Clock, ArrowRight } from "lucide-react";
 
-export const Route = createFileRoute("/templates")({
+export const Route = createFileRoute("/studio/templates")({
   head: () => ({
     meta: [
       { title: "Templates — Pixels Studio" },

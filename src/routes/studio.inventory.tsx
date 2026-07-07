@@ -7,7 +7,7 @@ import { assets, licenseTone, type Asset } from "@/lib/marketplace-data";
 import { gamesList } from "@/lib/mock-games";
 import { Gamepad2, Package, Hammer, Download, Play, ExternalLink, Search, Filter, Star, Clock, HardDrive } from "lucide-react";
 
-export const Route = createFileRoute("/inventory")({
+export const Route = createFileRoute("/studio/inventory")({
   head: () => ({
     meta: [
       { title: "Inventory — Pixels Studio" },
