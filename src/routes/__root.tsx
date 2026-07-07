@@ -116,6 +116,7 @@ function RootComponent() {
       <ModeProvider>
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
+        <Toaster position="bottom-right" richColors closeButton theme="light" toastOptions={{ style: { border: "2px solid var(--ink)", borderRadius: "16px", boxShadow: "3px 3px 0 0 var(--ink)", fontFamily: "var(--font-mono)" } }} />
       </ModeProvider>
     </QueryClientProvider>
   );
